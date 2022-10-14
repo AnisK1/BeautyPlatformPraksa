@@ -17,6 +17,7 @@ import MainPage2 from "./components/pages/MainPage2";
 import Location from "./components/pages/Location";
 import Therapists from "./components/pages/Therapists";
 import Treatments from "./components/pages/Treatments";
+import ErrorPage404 from "./components/pages/ErrorPage404";
 
 function App() {
   const token = useSelector((state) => state.tokenValue);
@@ -32,6 +33,8 @@ function App() {
         <Route path="ResetPassword" element={<ResetPassword />} />
 
         <Route path="forgotPassword" element={<ForgotPassword />} />
+
+        <Route path="*" element={<ErrorPage404 />} />
       </Routes>
     );
   } else if (token !== "") {
@@ -50,6 +53,8 @@ function App() {
         <Route path="Therapists" element={<Therapists />} />
 
         <Route path="UsersList" element={<UsersList />} />
+
+        <Route path="*" element={<ErrorPage404 />} />
       </Routes>
     );
   }
