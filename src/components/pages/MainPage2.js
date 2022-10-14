@@ -6,6 +6,8 @@ import Treatments from "../Treatments/Treatments";
 import Cart from "../Cart/Cart";
 import DateTime from "./DateTime";
 import AddTreatment from "./AddTreatment";
+import { addTodo } from "../../store/Login-slice";
+import { useDispatch } from "react-redux";
 
 import therapistIMG from "../../image/pic3.jpg";
 import treatmentIMG from "../../image/pic4.jpg";
@@ -18,20 +20,12 @@ import { useSelector } from "react-redux";
 
 function Main2() {
   const [cartIsShown, setCartIsShown] = useState(false);
-  const [dateIsShown, setDateIsShown] = useState(false);
-
-  const [adminControl, setAdminControl] = useState(false);
 
   const token = useSelector((state) => state.tokenValue);
   console.log("grob te", token);
+  console.log("length", token.length);
 
-  const showAdminHandler = () => {
-    setAdminControl(true);
-  };
-  const hideAdminHandler = () => {
-    setAdminControl(false);
-  };
-  console.log(adminControl);
+  const dispatch = useDispatch();
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -39,34 +33,37 @@ function Main2() {
   const hideCartHandler = () => {
     setCartIsShown(false);
   };
+  const TokenHandler = () => {
+    dispatch(addTodo(""));
+  };
 
-  const showDateHandler = () => {
-    setDateIsShown(true);
-  };
-  const hideDateHandler = () => {
-    setDateIsShown(false);
-  };
-  console.log(dateIsShown);
   return (
     <Fragment>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
-      {dateIsShown && <DateTime onClose={hideDateHandler} />}
-      {adminControl && <AddTreatment onClose={hideAdminHandler} />}
 
       <Header onShowCart={showCartHandler}></Header>
       <main>
+        <button onClick={TokenHandler}>LOGOUT</button>
         <div className={classes.glavni}>
           <div className={classes.divs}>
             <h1 className={classes.naslov}>Our therapists</h1>
 
-            <img className={classes.image} src={therapistIMG}></img>
+            <img
+              className={classes.image}
+              src={therapistIMG}
+              alt="Therapist"
+            ></img>
             <Link className={classes.LNKC} to="/Therapists">
               <button className={classes.button2}>Therapists</button>
             </Link>
           </div>
           <div className={classes.divs}>
             <h1 className={classes.naslov}>Treatments</h1>
-            <img className={classes.image} src={treatmentIMG}></img>
+            <img
+              className={classes.image}
+              src={treatmentIMG}
+              alt="Treatment"
+            ></img>
             <Link className={classes.LNKC} to="/Treatments">
               <button className={classes.button2}>Treatments</button>
             </Link>
@@ -75,14 +72,22 @@ function Main2() {
         <div className={classes.glavni}>
           <div className={classes.divs}>
             <h1 className={classes.naslov}>Location</h1>
-            <img className={classes.image} src={locationIMG}></img>
+            <img
+              className={classes.image}
+              src={locationIMG}
+              alt="Location"
+            ></img>
             <Link className={classes.LNKC} to="/Location">
               <button className={classes.button2}>Locations</button>
             </Link>
           </div>
           <div className={classes.divs}>
-            <h1 className={classes.naslov}>Treatments</h1>
-            <img className={classes.image} src={reservationIMG}></img>
+            <h1 className={classes.naslov}>Make reservation</h1>
+            <img
+              className={classes.image}
+              src={reservationIMG}
+              alt="Reservation"
+            ></img>
             <Link className={classes.LNKC} to="/Reservation">
               <button className={classes.button2}>Make reservation</button>
             </Link>

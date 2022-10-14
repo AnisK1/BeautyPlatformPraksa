@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Button1 from "@mui/material/Button";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/Login-slice";
@@ -19,8 +20,9 @@ const Login = (props) => {
   const token = useSelector((state) => state.todos);
   const dispatch = useDispatch();
   console.log(token);
+  const navigate = useNavigate();
 
-  const SubmitHandler = (event) => {
+  const SubmitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -44,6 +46,7 @@ const Login = (props) => {
         setValue(data.data.token);
         console.log(data.data.token);
         dispatch(addTodo(data.data.token));
+        navigate("/MainPage2");
       })
       .catch((error) => {});
   };
@@ -94,15 +97,15 @@ const Login = (props) => {
           </div>
           <div>
             {/*
-             <Button className={classes.buttonCSS} type="submit">
-              Login
-            </Button>
-  */}
-            <Link to="MainPage2">
+             <Link to="MainPage2">
               <Button className={classes.buttonCSS} type="submit">
                 Login
               </Button>
             </Link>
+  */}
+            <Button className={classes.buttonCSS} type="submit">
+              Login
+            </Button>
           </div>
         </form>
       </div>

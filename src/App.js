@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Fragment, useState } from "react";
 
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
@@ -17,33 +19,42 @@ import Therapists from "./components/pages/Therapists";
 import Treatments from "./components/pages/Treatments";
 
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Login />} />
+  const token = useSelector((state) => state.tokenValue);
+  console.log("grob te", token);
 
-      <Route path="AddTreatment" element={<AddTreatment />} />
+  if (token === "") {
+    return (
+      <Routes>
+        <Route path="/" element={<Login />} />
 
-      <Route path="Reservation" element={<Reservation />} />
+        <Route path="register" element={<Register />} />
 
-      <Route path="MainPage2" element={<MainPage2 />} />
+        <Route path="ResetPassword" element={<ResetPassword />} />
 
-      <Route path="Location" element={<Location />} />
+        <Route path="forgotPassword" element={<ForgotPassword />} />
 
-      <Route path="Treatments" element={<Treatments />} />
+        <Route path="MainPage2" element={<Login />} />
+      </Routes>
+    );
+  } else if (token !== "") {
+    return (
+      <Routes>
+        <Route path="Reservation" element={<Reservation />} />
 
-      <Route path="Therapists" element={<Therapists />} />
+        <Route path="AddTreatment" element={<AddTreatment />} />
 
-      <Route path="UsersList" element={<UsersList />} />
+        <Route path="MainPage2" element={<MainPage2 />} />
 
-      <Route path="ResetPassword" element={<ResetPassword />} />
+        <Route path="Location" element={<Location />} />
 
-      <Route path="AdminPage" element={<AdminPage />} />
+        <Route path="Treatments" element={<Treatments />} />
 
-      <Route path="register" element={<Register />} />
+        <Route path="Therapists" element={<Therapists />} />
 
-      <Route path="forgotPassword" element={<ForgotPassword />} />
-    </Routes>
-  );
+        <Route path="UsersList" element={<UsersList />} />
+      </Routes>
+    );
+  }
 }
 
 export default App;

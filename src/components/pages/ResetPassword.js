@@ -20,15 +20,15 @@ const ResetPassword = (props) => {
     const enteredConfirmedPassword = ConfirmedPasswordInputRef.current.value;
     //ceka se da backend ispravi zato saljem token na ovaj nacin(ovaj token nije validan)
     const enteredToken =
-      "a9ab5f120885b93b71dbf96453e486ad41628f3afed914f27dd634202f909ea6";
+      "7e758f502b7921f6c83393d4f4637a08d38a293cd1e96ebdfeded72b08b3e885";
 
     axios
       .post(
-        "http://127.0.0.1:8000/api/resetPassword",
+        "http://127.0.0.1:8000/api/reset/password",
         {
           email: enteredEmail,
           password: enteredPassword,
-          confirmed_password: enteredConfirmedPassword,
+          password_confirmation: enteredConfirmedPassword,
           token: enteredToken,
         },
         {
