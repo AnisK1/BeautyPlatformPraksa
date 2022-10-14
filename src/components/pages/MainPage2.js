@@ -13,6 +13,7 @@ import therapistIMG from "../../image/pic3.jpg";
 import treatmentIMG from "../../image/pic4.jpg";
 import locationIMG from "../../image/pic5.jpg";
 import reservationIMG from "../../image/pic6.jpg";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 
@@ -21,6 +22,7 @@ import { useSelector } from "react-redux";
 function Main2() {
   const [cartIsShown, setCartIsShown] = useState(false);
 
+  const navigate = useNavigate();
   const token = useSelector((state) => state.tokenValue);
   console.log("grob te", token);
   console.log("length", token.length);
@@ -35,6 +37,7 @@ function Main2() {
   };
   const TokenHandler = () => {
     dispatch(addTodo(""));
+    navigate("/");
   };
 
   return (

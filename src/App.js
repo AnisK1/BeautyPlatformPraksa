@@ -32,8 +32,6 @@ function App() {
         <Route path="ResetPassword" element={<ResetPassword />} />
 
         <Route path="forgotPassword" element={<ForgotPassword />} />
-
-        <Route path="MainPage2" element={<Login />} />
       </Routes>
     );
   } else if (token !== "") {
