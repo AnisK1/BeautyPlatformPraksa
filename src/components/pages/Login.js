@@ -88,7 +88,7 @@ const Login = (props) => {
             <label className={classes.forgotP}>Forgot your password? </label>
             <Link to="/ForgotPassword">
               <Button1 type="submit" variant="outlined">
-                HELP
+                CONTACT US
               </Button1>
             </Link>
           </div>
@@ -98,7 +98,7 @@ const Login = (props) => {
               Login
             </Button>
   */}
-            <Link to="MainPage">
+            <Link to="MainPage2">
               <Button className={classes.buttonCSS} type="submit">
                 Login
               </Button>

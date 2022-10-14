@@ -61,3 +61,11 @@
   max-height: 40vh;
   overflow-y: scroll;
 }
+.loader {
+  align-items: center;
+  width: 100%;
+}
+.spiner {
+  display: flex;
+  margin: auto;
+}

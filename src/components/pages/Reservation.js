@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-import classes from "./MainPage.module.css";
+import classes from "./Reservation.module.css";
 import Header from "../Layout/Header";
 import Treatments from "../Treatments/Treatments";
 import Cart from "../Cart/Cart";
@@ -11,11 +11,14 @@ import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-function Main() {
+function Reservation() {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [dateIsShown, setDateIsShown] = useState(false);
 
   const [adminControl, setAdminControl] = useState(false);
+
+  const token = useSelector((state) => state.tokenValue);
+  console.log("grob te", token);
 
   const showAdminHandler = () => {
     setAdminControl(true);
@@ -62,4 +65,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Reservation;

@@ -1,0 +1,40 @@
+.button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: #8a2b06;
+  color: white;
+  padding: 0.75rem 3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}
+.frame {
+  width: 600px;
+  height: 500px;
+  display: flex;
+  margin: auto;
+}
+.locationBTNS {
+  width: 480px;
+  align-items: center;
+  display: flex;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.button:hover,
+.button:active {
+  background-color: #2c0d00;
+}
+.addButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.BTN2 {
+  background-color: #8a2b06;
+}

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import classes from "./UsersList.module.css";
 import { useState, useEffect } from "react";
 import Card from "../UI/Card";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const baseURL = "http://127.0.0.1:8000/api/allUser";
 
@@ -47,7 +48,15 @@ const UsersList = (props) => {
   return (
     <Modal>
       {loading ? (
-        "loading"
+        <div className={classes.loader}>
+          <ClipLoader
+            className={classes.spiner}
+            loading={loading}
+            size={60}
+            aria-label="Loading Spinner"
+            data-testid="FadeLoader"
+          />
+        </div>
       ) : (
         <>
           <div className={classes.main}>

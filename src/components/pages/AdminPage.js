@@ -40,8 +40,8 @@ function Main() {
             <button className={classes.button} onClick={showUsersListHandler}>
               Users list
             </button>
-            <button className={classes.button}>Users list</button>
-            <button className={classes.button}>Users list</button>
+            <button className={classes.button}>??</button>
+            <button className={classes.button}>??</button>
           </div>
         </Card>
       </section>
