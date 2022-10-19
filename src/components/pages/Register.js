@@ -8,6 +8,7 @@ import axios from "../Auth/axiosSetup";
 import { render } from "@testing-library/react";
 import Modal from "../UI/Modal";
 import Welcome from "../Modals/Welcome";
+import CoverIMG from "../../image/LoginCover.jpg";
 
 const Register = (props) => {
   const nameInputRef = useRef();
@@ -53,16 +54,19 @@ const Register = (props) => {
   };
 
   return (
-    <div className={classes.main}>
-      <img src={profile} alt="profile" className={classes.profile} />
+    <div
+      className={classes.main}
+      style={{ backgroundImage: `url(${CoverIMG})` }}
+    >
+      {/* <img src={profile} alt="profile" className={classes.profile} /> */}
 
       <div className={classes.submain}>
         <div className={classes.question}>
           <label>Already have an account? </label>
           <Link to="/">
-            <Button1 type="submit" variant="outlined">
-              login
-            </Button1>
+            <Button className={classes.buttonCSS} type="submit">
+              Login
+            </Button>
           </Link>
         </div>
 

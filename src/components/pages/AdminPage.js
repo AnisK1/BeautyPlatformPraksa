@@ -8,10 +8,15 @@ import Cart from "../Cart/Cart";
 import DateTime from "./DateTime";
 import AddTreatment from "./AddTreatment";
 import UsersList from "../Modals/UsersList";
+import ReservationList from "../Modals/ReservationList";
+import UserSearch from "../Modals/UserSearch";
 
 function Main() {
   const [cartIsShown, setCartIsShown] = useState(false);
   const [usersListIsShown, setUsersListIsShown] = useState(false);
+  const [userSearchIsShown, setUserSearchIsShown] = useState(false);
+
+  const [reservationListIsShown, setReservationListIsShown] = useState(false);
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -27,12 +32,31 @@ function Main() {
     setUsersListIsShown(false);
   };
 
+  const showUserSearchListHandler = () => {
+    setUserSearchIsShown(true);
+  };
+  const hideUserSearchListHandler = () => {
+    setUserSearchIsShown(false);
+  };
+
+  const showReservationListHandler = () => {
+    setReservationListIsShown(true);
+  };
+  const hideReservationListHandler = () => {
+    setReservationListIsShown(false);
+  };
+
   return (
     <Fragment>
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       {usersListIsShown && <UsersList onClose={hideUsersListHandler} />}
+      {userSearchIsShown && <UserSearch onClose={hideUserSearchListHandler} />}
+      {reservationListIsShown && (
+        <ReservationList onClose={hideReservationListHandler} />
+      )}
 
       <Header onShowCart={showCartHandler}></Header>
+      <div className={classes.cover}></div>
 
       <section className={classes.treatments}>
         <Card>
@@ -40,8 +64,18 @@ function Main() {
             <button className={classes.button} onClick={showUsersListHandler}>
               Users list
             </button>
-            <button className={classes.button}>??</button>
-            <button className={classes.button}>??</button>
+            <button
+              className={classes.button}
+              onClick={showReservationListHandler}
+            >
+              Reservations
+            </button>
+            <button
+              className={classes.button}
+              onClick={showUserSearchListHandler}
+            >
+              User search
+            </button>
           </div>
         </Card>
       </section>

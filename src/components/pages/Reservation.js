@@ -6,6 +6,7 @@ import Treatments from "../Treatments/Treatments";
 import Cart from "../Cart/Cart";
 import DateTime from "./DateTime";
 import AddTreatment from "./AddTreatment";
+import FooterB from "../Layout/Footer";
 
 import { Link } from "react-router-dom";
 
@@ -17,8 +18,7 @@ function Reservation() {
 
   const [adminControl, setAdminControl] = useState(false);
 
-  const token = useSelector((state) => state.tokenValue);
-  console.log("grob te", token);
+  const theme = useSelector((state) => state.theme.themeValue);
 
   const showAdminHandler = () => {
     setAdminControl(true);
@@ -44,23 +44,50 @@ function Reservation() {
   console.log(dateIsShown);
   return (
     <Fragment>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
-      {dateIsShown && <DateTime onClose={hideDateHandler} />}
-      {adminControl && <AddTreatment onClose={hideAdminHandler} />}
+      {theme && (
+        <div>
+          {cartIsShown && <Cart onClose={hideCartHandler} />}
+          {dateIsShown && <DateTime onClose={hideDateHandler} />}
+          {adminControl && <AddTreatment onClose={hideAdminHandler} />}
+          <div className={classes.cover}></div>
 
-      <Header onShowCart={showCartHandler}></Header>
-      <main>
-        <Treatments
-          onShowDate={showDateHandler}
-          onShowAdmin={showAdminHandler}
-        ></Treatments>
+          <Header onShowCart={showCartHandler}></Header>
+          <main>
+            <Treatments
+              onShowDate={showDateHandler}
+              onShowAdmin={showAdminHandler}
+            ></Treatments>
 
-        <div className={classes.addButton}>
-          <Link to="/AdminPage">
-            <button className={classes.button}>ADMIN PANEL</button>
-          </Link>
+            {/* <div className={classes.addButton}>
+              <Link to="/AdminPage">
+                <button className={classes.button}>ADMIN PANEL</button>
+              </Link>
+            </div> */}
+          </main>
         </div>
-      </main>
+      )}
+      {!theme && (
+        <div className={classes.frameL}>
+          {cartIsShown && <Cart onClose={hideCartHandler} />}
+          {dateIsShown && <DateTime onClose={hideDateHandler} />}
+          {adminControl && <AddTreatment onClose={hideAdminHandler} />}
+          <div className={classes.cover}></div>
+
+          <Header onShowCart={showCartHandler}></Header>
+          <main>
+            <Treatments
+              onShowDate={showDateHandler}
+              onShowAdmin={showAdminHandler}
+            ></Treatments>
+
+            {/* <div className={classes.addButton}>
+              <Link to="/AdminPage">
+                <button className={classes.button}>ADMIN PANEL</button>
+              </Link>
+            </div> */}
+          </main>
+        </div>
+      )}
     </Fragment>
   );
 }

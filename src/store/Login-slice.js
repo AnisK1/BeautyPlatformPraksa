@@ -5,10 +5,6 @@ const todoSlice = createSlice({
   initialState: { tokenValue: "" },
   reducers: {
     addTodo: (state, action) => {
-      /* const todo = {
-        tokenValue: action.payload,
-      };
-      state.push(todo); */
       state.tokenValue = action.payload;
     },
   },

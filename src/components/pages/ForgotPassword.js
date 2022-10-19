@@ -6,6 +6,7 @@ import profile from "../../image/pic2.jpg";
 import { Link } from "react-router-dom";
 import Cpm from "../Modals/ConfirmPasswordModal";
 import axios from "axios";
+import CoverIMG from "../../image/LoginCover.jpg";
 
 const ForgotPassword = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -40,16 +41,19 @@ const ForgotPassword = (props) => {
   };
 
   return (
-    <div className={classes.main}>
-      <img src={profile} alt="profile" className={classes.profile} />
+    <div
+      className={classes.main}
+      style={{ backgroundImage: `url(${CoverIMG})` }}
+    >
+      {/* <img src={profile} alt="profile" className={classes.profile} /> */}
 
       <div className={classes.submain}>
         <div className={classes.question}>
           <label>Not registered yet? </label>
           <Link to="/register">
-            <Button1 type="submit" variant="outlined">
+            <Button className={classes.buttonCSS} type="submit">
               Register
-            </Button1>
+            </Button>
           </Link>
         </div>
 

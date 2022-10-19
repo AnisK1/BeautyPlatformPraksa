@@ -1,5 +1,6 @@
 import classes from "./Login.module.css";
 import profile from "../../image/pic2.jpg";
+import CoverIMG from "../../image/LoginCover.jpg";
 import Button from "../UI/Button";
 import React, { useState, useRef } from "react";
 import { useSelector } from "react-redux";
@@ -10,17 +11,36 @@ import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/Login-slice";
+import { dark, light } from "../../store/Theme-slice";
 import { SliderValueLabel } from "@mui/material";
 
 const Login = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(false);
-  const [value, setValue] = useState("");
-  const token = useSelector((state) => state.todos);
+  const [value, setValue] = useState(true);
+
+  const token = useSelector((state) => state.login.tokenValue);
+
   const dispatch = useDispatch();
-  console.log(token);
+  console.log("token", token);
   const navigate = useNavigate();
+
+  const themeD = useSelector((state) => state.theme.themeValue);
+
+  console.log("themeD", themeD);
+
+  const dispatchHandlerD = async (event) => {
+    event.preventDefault();
+
+    dispatch(dark(true));
+    console.log("themeD", themeD);
+  };
+  const dispatchHandlerL = async (event) => {
+    event.preventDefault();
+
+    dispatch(dark(false));
+  };
 
   const SubmitHandler = async (event) => {
     event.preventDefault();
@@ -52,16 +72,19 @@ const Login = (props) => {
   };
 
   return (
-    <div className={classes.main}>
-      <img src={profile} alt="profile" className={classes.profile} />
+    <div
+      className={classes.main}
+      style={{ backgroundImage: `url(${CoverIMG})` }}
+    >
+      {/* <img src={profile} alt="profile" className={classes.profile} /> */}
 
       <div className={classes.submain}>
         <div className={classes.question}>
           <label>Not registered yet? </label>
           <Link to="/register">
-            <Button1 type="submit" variant="outlined">
+            <Button className={classes.buttonCSS} type="submit">
               Register
-            </Button1>
+            </Button>
           </Link>
         </div>
 
@@ -76,6 +99,7 @@ const Login = (props) => {
             type="text"
             className={classes.name}
             required
+            name="Email"
             ref={emailInputRef}
           ></input>
           <label>
@@ -90,9 +114,9 @@ const Login = (props) => {
           <div className={classes.FP}>
             <label className={classes.forgotP}>Forgot your password? </label>
             <Link to="/ForgotPassword">
-              <Button1 type="submit" variant="outlined">
+              <Button className={classes.buttonCSS} type="submit">
                 CONTACT US
-              </Button1>
+              </Button>
             </Link>
           </div>
           <div>

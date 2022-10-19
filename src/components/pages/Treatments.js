@@ -1,4 +1,8 @@
 import { Fragment, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import axios from "axios";
 
 import classes from "./Treatments.module.css";
 import Header from "../Layout/Header";
@@ -26,7 +30,15 @@ const DUMMY_TREATMENTS = [
   },
 ];
 
+const baseURL = "http://127.0.0.1:8000/api/allTreatments";
+
 function Main() {
+  const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const theme = useSelector((state) => state.theme.themeValue);
+
   const treatmentsList = DUMMY_TREATMENTS.map((treatment) => (
     <div className={classes.main}>
       <h1 className={classes.name}>{treatment.name}</h1>
@@ -36,11 +48,49 @@ function Main() {
       </div>
     </div>
   ));
+  const treatmentsListL = DUMMY_TREATMENTS.map((treatment) => (
+    <div className={classes.mainL}>
+      <h1 className={classes.nameL}>{treatment.name}</h1>
+      <div className={classes.descriptionL}>{treatment.description}</div>
+      <div className={classes.priceL}>
+        <h2>{treatment.price}$</h2>
+      </div>
+    </div>
+  ));
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(baseURL)
+      .then((res) => {
+        // check status for response and set data accordingly
+        //setPost(res.data.data.users);
+        // log the data
+        console.log("post", res);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(true);
+      });
+  }, []);
 
   return (
     <Fragment>
-      <Header></Header>
-      <ul>{treatmentsList}</ul>
+      {theme && (
+        <div className={classes.frame}>
+          <Header></Header>
+          <div className={classes.cover}></div>
+          <ul>{treatmentsList}</ul>
+        </div>
+      )}
+      {!theme && (
+        <div className={classes.frameL}>
+          <Header></Header>
+          <div className={classes.cover}></div>
+          <ul>{treatmentsListL}</ul>
+        </div>
+      )}
     </Fragment>
   );
 }

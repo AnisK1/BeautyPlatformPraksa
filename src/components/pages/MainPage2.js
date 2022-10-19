@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import Footer from "../Layout/Footer";
 
 import classes from "./MainPage2.module.css";
 import Header from "../Layout/Header";
@@ -7,6 +8,7 @@ import Cart from "../Cart/Cart";
 import DateTime from "./DateTime";
 import AddTreatment from "./AddTreatment";
 import { addTodo } from "../../store/Login-slice";
+import { dark } from "../../store/Theme-slice";
 import { useDispatch } from "react-redux";
 
 import therapistIMG from "../../image/pic3.jpg";
@@ -14,6 +16,9 @@ import treatmentIMG from "../../image/pic4.jpg";
 import locationIMG from "../../image/pic5.jpg";
 import reservationIMG from "../../image/pic6.jpg";
 import { useNavigate } from "react-router-dom";
+
+import MainPageIMG from "../../image/MainPageIMG.jpg";
+import MainPageIMGL from "../../image/MainPageIMGL.png";
 
 import { Link } from "react-router-dom";
 
@@ -23,7 +28,9 @@ function Main2() {
   const [cartIsShown, setCartIsShown] = useState(false);
 
   const navigate = useNavigate();
-  const token = useSelector((state) => state.tokenValue);
+  const token = useSelector((state) => state.login.tokenValue);
+
+  const theme = useSelector((state) => state.theme.themeValue);
   console.log("grob te", token);
   console.log("length", token.length);
 
@@ -42,66 +49,73 @@ function Main2() {
 
   return (
     <Fragment>
-      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      {theme && (
+        <div className={classes.frg}>
+          {cartIsShown && <Cart onClose={hideCartHandler} />}
 
-      <Header onShowCart={showCartHandler}></Header>
-      <main>
-        <button onClick={TokenHandler}>LOGOUT</button>
-        <div className={classes.glavni}>
-          <div className={classes.divs}>
-            <h1 className={classes.naslov}>Our therapists</h1>
+          <div className={classes.cover}></div>
 
-            <img
-              className={classes.image}
-              src={therapistIMG}
-              alt="Therapist"
-            ></img>
-            <Link className={classes.LNKC} to="/Therapists">
-              <button className={classes.button2}>Therapists</button>
-            </Link>
-          </div>
-          <div className={classes.divs}>
-            <h1 className={classes.naslov}>Treatments</h1>
-            <img
-              className={classes.image}
-              src={treatmentIMG}
-              alt="Treatment"
-            ></img>
-            <Link className={classes.LNKC} to="/Treatments">
-              <button className={classes.button2}>Treatments</button>
-            </Link>
-          </div>
+          <Header onShowCart={showCartHandler}></Header>
+          <main>
+            <div className={classes.glavni}>
+              <div className={classes.lijevi}>
+                <div className={classes.txtPos}>
+                  <h1 className={classes.h1}>
+                    Professional treatments for you!
+                  </h1>
+                  <h2>You need beauty treatment for your photo shoot?</h2>
+                  <h2>
+                    Or you want to decorate yourself for special occasion?
+                  </h2>
+                  <button>CONTACT US</button>
+                </div>
+              </div>
+              <div className={classes.desni}>
+                <img
+                  className={classes.image}
+                  src={MainPageIMG}
+                  alt="MainIMG"
+                ></img>
+              </div>
+            </div>
+          </main>
+          <div className={classes.footer}></div>
         </div>
-        <div className={classes.glavni}>
-          <div className={classes.divs}>
-            <h1 className={classes.naslov}>Location</h1>
-            <img
-              className={classes.image}
-              src={locationIMG}
-              alt="Location"
-            ></img>
-            <Link className={classes.LNKC} to="/Location">
-              <button className={classes.button2}>Locations</button>
-            </Link>
-          </div>
-          <div className={classes.divs}>
-            <h1 className={classes.naslov}>Make reservation</h1>
-            <img
-              className={classes.image}
-              src={reservationIMG}
-              alt="Reservation"
-            ></img>
-            <Link className={classes.LNKC} to="/Reservation">
-              <button className={classes.button2}>Make reservation</button>
-            </Link>
-          </div>
+      )}
+      {/* ------------------------------------------------------------------------------------ */}
+      {!theme && (
+        <div className={classes.frgL}>
+          {cartIsShown && <Cart onClose={hideCartHandler} />}
+
+          <div className={classes.coverL}></div>
+
+          <Header onShowCart={showCartHandler}></Header>
+          <main>
+            <div className={classes.glavniL}>
+              <div className={classes.lijeviL}>
+                <div className={classes.txtPosL}>
+                  <h1 className={classes.h1L}>
+                    Professional treatments for you!
+                  </h1>
+                  <h2>You need beauty treatment for your photo shoot?</h2>
+                  <h2>
+                    Or you want to decorate yourself for special occasion?
+                  </h2>
+                  <button>CONTACT US</button>
+                </div>
+              </div>
+              <div className={classes.desniL}>
+                <img
+                  className={classes.imageL}
+                  src={MainPageIMGL}
+                  alt="MainIMG"
+                ></img>
+              </div>
+            </div>
+          </main>
+          <div className={classes.footerL}></div>
         </div>
-        <div className={classes.addButton}>
-          <Link className={classes.LNKC} to="/AdminPage">
-            <button className={classes.button}>ADMIN PANEL</button>
-          </Link>
-        </div>
-      </main>
+      )}
     </Fragment>
   );
 }

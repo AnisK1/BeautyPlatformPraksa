@@ -5,6 +5,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Button1 from "@mui/material/Button";
 import axios from "axios";
+import CoverIMG from "../../image/LoginCover.jpg";
 
 const ResetPassword = (props) => {
   const emailInputRef = useRef();
@@ -44,13 +45,17 @@ const ResetPassword = (props) => {
   };
 
   return (
-    <div className={classes.main}>
-      <img src={profile} alt="profile" className={classes.profile} />
+    <div
+      className={classes.main}
+      style={{ backgroundImage: `url(${CoverIMG})` }}
+    >
+      {/* <img src={profile} alt="profile" className={classes.profile} /> */}
 
       <div className={classes.submain}>
-        <div className={classes.title}>
+        <div className={classes.posTitle}>
           <h1>Reset password</h1>
         </div>
+
         <form onSubmit={SubmitHandler}>
           <label>
             <b>Email</b>
@@ -80,7 +85,7 @@ const ResetPassword = (props) => {
             ref={ConfirmedPasswordInputRef}
           ></input>
 
-          <div>
+          <div className={classes.BTNCTRL}>
             {/*
             <Button className={classes.buttonCSS} type="submit">
               Login

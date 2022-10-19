@@ -1,0 +1,49 @@
+.main {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: row;
+}
+.left {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+
+  border-right: 2px solid black;
+}
+.left button {
+  margin: auto;
+  border: 1px solid wheat;
+}
+.right {
+  width: 50%;
+  height: 80%;
+}
+.right button {
+  height: 45px;
+  display: flex;
+  margin: auto;
+  margin-top: 15%;
+  border: 1px solid wheat;
+}
+.close {
+  display: flex;
+  margin: auto;
+  align-items: center;
+}
+.close button {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  border: 1px solid wheat;
+}
+.close button:hover,
+.close button:active,
+.left button:hover,
+.left button:active,
+.right button:hover,
+.right button:active {
+  background-color: rgb(203, 108, 130);
+  color: white;
+}

@@ -20,10 +20,10 @@ import Treatments from "./components/pages/Treatments";
 import ErrorPage404 from "./components/pages/ErrorPage404";
 
 function App() {
-  const token = useSelector((state) => state.tokenValue);
+  const token = useSelector((state) => state.login.tokenValue);
   console.log("grob te", token);
 
-  if (token === "") {
+  if (!token) {
     return (
       <Routes>
         <Route path="/" element={<Login />} />
@@ -53,6 +53,8 @@ function App() {
         <Route path="Therapists" element={<Therapists />} />
 
         <Route path="UsersList" element={<UsersList />} />
+
+        <Route path="AdminPage" element={<AdminPage />} />
 
         <Route path="*" element={<ErrorPage404 />} />
       </Routes>
