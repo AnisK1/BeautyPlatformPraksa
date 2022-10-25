@@ -26,31 +26,51 @@
   width: 200px;
   height: 200px;
 }
+.main {
+  overflow: scroll;
+  height: 105vh;
+  border: 3px solid red;
+}
 
 .therapistsCVR {
   width: 60%;
   display: flex;
   margin: auto;
-  margin-bottom: 5px;
+  margin-bottom: 50px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.innerMain {
+  padding-bottom: 50px;
+}
+.imageW {
+  width: 60vh;
+  height: 100%;
+  margin-bottom: -2px;
 }
 
 .innerdiv {
   display: block;
   color: white;
+  padding-left: 10px;
 }
-.innerdiv h1,
-h2,
-h3,
-p {
+.innerdiv p {
+  color: white;
+}
+.innerdiv h1 {
+  color: white;
+}
+.innerdiv h3 {
+  color: white;
+}
+.innerdiv h2 {
   color: white;
 }
 .btnDIV {
   margin: auto;
 }
 .cover {
-  height: 8rem;
+  height: 10rem;
   width: 100%;
 }
 .frame {
@@ -63,8 +83,10 @@ p {
 
 .frameL {
   width: 100%;
-  height: 100%;
+
   background-color: white;
+  overflow: scroll;
+  height: 105vh;
 }
 
 .button {
@@ -105,10 +127,17 @@ p {
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
-.innerdiv {
+.btnDIV {
+  margin: auto;
+}
+
+.innerdivL {
   display: block;
   color: black;
 }
-.btnDIV {
-  margin: auto;
+.innerdivL h1,
+h2,
+h3,
+p {
+  color: black;
 }

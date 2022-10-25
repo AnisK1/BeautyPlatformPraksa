@@ -16,7 +16,7 @@ const Footer = (props) => {
   const theme = useSelector((state) => state.theme.themeValue);
 
   return (
-    <Fragment>
+    <>
       {theme && (
         <Footer className={classes.footer}>
           <div className={classes.inner}>
@@ -45,7 +45,7 @@ const Footer = (props) => {
         <img src={headerImage} alt="beauty platform" />
       </div>
       */}
-    </Fragment>
+    </>
   );
 };
 

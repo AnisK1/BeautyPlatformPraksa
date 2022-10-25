@@ -13,12 +13,15 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/Login-slice";
 import { dark, light } from "../../store/Theme-slice";
 import { SliderValueLabel } from "@mui/material";
+import CustomButton from "../UI/Button";
 
 const Login = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(false);
   const [value, setValue] = useState(true);
+  const [error, setError] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
 
   const token = useSelector((state) => state.login.tokenValue);
 
@@ -68,7 +71,19 @@ const Login = (props) => {
         dispatch(addTodo(data.data.token));
         navigate("/MainPage2");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        if (error.response) {
+          // Request made and server responded
+          console.log(error.response.data.message);
+          setErrorMessage(error.response.data.message);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      });
   };
 
   return (
@@ -79,57 +94,80 @@ const Login = (props) => {
       {/* <img src={profile} alt="profile" className={classes.profile} /> */}
 
       <div className={classes.submain}>
-        <div className={classes.question}>
-          <label>Not registered yet? </label>
-          <Link to="/register">
-            <Button className={classes.buttonCSS} type="submit">
-              Register
-            </Button>
-          </Link>
-        </div>
+        <div className={classes.AA}>
+          <div className={classes.questionFRAME}>
+            <label>Not registered yet? </label>
 
+            <Link to="/register">
+              <CustomButton
+                label="Register"
+                className={classes.buttonCSS}
+                type="submit"
+              ></CustomButton>
+            </Link>
+          </div>
+        </div>
         <div className={classes.title}>
           <h1>Log in</h1>
         </div>
         <form onSubmit={SubmitHandler}>
-          <label>
-            <b>Email</b>
-          </label>
-          <input
-            type="text"
-            className={classes.name}
-            required
-            name="Email"
-            ref={emailInputRef}
-          ></input>
-          <label>
-            <b>Pasword</b>
-          </label>
-          <input
-            type="password"
-            className={classes.name}
-            required
-            ref={passwordInputRef}
-          ></input>
-          <div className={classes.FP}>
-            <label className={classes.forgotP}>Forgot your password? </label>
-            <Link to="/ForgotPassword">
-              <Button className={classes.buttonCSS} type="submit">
-                CONTACT US
-              </Button>
-            </Link>
-          </div>
-          <div>
-            {/*
-             <Link to="MainPage2">
-              <Button className={classes.buttonCSS} type="submit">
+          <div className={classes.FORMDIV}>
+            <div className={classes.EmailLBL}>
+              <label>
+                <b>Email</b>
+              </label>
+            </div>
+            <div className={classes.emailINP}>
+              <input
+                type="text"
+                className={classes.name}
+                required
+                name="Email"
+                ref={emailInputRef}
+              ></input>
+            </div>
+            <div className={classes.passwordLBL}>
+              <label>
+                <b>Pasword</b>
+              </label>
+            </div>
+            <div className={classes.passwordINP}>
+              <input
+                type="password"
+                className={classes.name}
+                required
+                ref={passwordInputRef}
+              ></input>
+            </div>
+
+            {errorMessage && (
+              <div className={classes.error}> {errorMessage}</div>
+            )}
+
+            <div>
+              <CustomButton
+                label="Login"
+                className={classes.buttonCSS}
+                type="submit"
+              >
                 Login
-              </Button>
-            </Link>
-  */}
-            <Button className={classes.buttonCSS} type="submit">
-              Login
-            </Button>
+              </CustomButton>
+            </div>
+
+            <div className={classes.FP}>
+              <div className={classes.FYPLBL}>
+                <label>Forgot your password? </label>
+              </div>
+              <div className={classes.FPBTN}>
+                <Link to="/ForgotPassword">
+                  <CustomButton
+                    label="Contact us"
+                    className={classes.buttonCSS}
+                    type="submit"
+                  ></CustomButton>
+                </Link>
+              </div>
+            </div>
           </div>
         </form>
       </div>

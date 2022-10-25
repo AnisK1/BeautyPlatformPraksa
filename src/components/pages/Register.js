@@ -9,12 +9,14 @@ import { render } from "@testing-library/react";
 import Modal from "../UI/Modal";
 import Welcome from "../Modals/Welcome";
 import CoverIMG from "../../image/LoginCover.jpg";
+import CustomButton from "../UI/Button";
 
 const Register = (props) => {
   const nameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const [userAdded, setUserAdded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -46,7 +48,19 @@ const Register = (props) => {
           console.log(userAdded);
         }
       })
-      .catch((error) => {});
+      .catch((error) => {
+        if (error.response) {
+          // Request made and server responded
+          console.log(error.response.data.message);
+          setErrorMessage(error.response.data.message);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      });
   };
 
   const hideUserAddedHandler = () => {
@@ -61,13 +75,17 @@ const Register = (props) => {
       {/* <img src={profile} alt="profile" className={classes.profile} /> */}
 
       <div className={classes.submain}>
-        <div className={classes.question}>
-          <label>Already have an account? </label>
-          <Link to="/">
-            <Button className={classes.buttonCSS} type="submit">
-              Login
-            </Button>
-          </Link>
+        <div className={classes.questionFRAME}>
+          <div className={classes.question}>
+            <label>Already have an account? </label>
+            <Link to="/">
+              <CustomButton
+                label="Login"
+                className={classes.buttonCSS}
+                type="submit"
+              ></CustomButton>
+            </Link>
+          </div>
         </div>
 
         <div className={classes.title}>
@@ -75,17 +93,22 @@ const Register = (props) => {
         </div>
 
         <form onSubmit={submitHandler}>
-          <label>
-            <b>Name</b>
-          </label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            required
-            ref={nameInputRef}
-          />
-          {/*
+          <div className={classes.FORMDIV}>
+            <div className={classes.nameLBL}>
+              <label>
+                <b>Name</b>
+              </label>
+            </div>
+            <div className={classes.nameINP}>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                required
+                ref={nameInputRef}
+              />
+            </div>
+            {/*
           <label for="email">
             <b>Last name</b>
           </label>
@@ -97,28 +120,39 @@ const Register = (props) => {
             onChange={lastNameChangeHandler}
           />
   */}
-          <label>
-            <b>Email</b>
-          </label>
-          <input
-            type="text"
-            name="email"
-            id="email"
-            required
-            ref={emailInputRef}
-          />
+            <div className={classes.emailLBL}>
+              <label>
+                <b>Email</b>
+              </label>
+            </div>
+            <div className={classes.emailINP}>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                required
+                ref={emailInputRef}
+              />
+            </div>
+            <div className={classes.passwordLBL}>
+              <label>
+                <b>Password</b>
+              </label>
+            </div>
+            <div className={classes.passwordINP}>
+              <input
+                type="password"
+                name="psw"
+                id="psw"
+                required
+                ref={passwordInputRef}
+              />
+            </div>
+            {errorMessage && (
+              <div className={classes.error}> {errorMessage}</div>
+            )}
 
-          <label>
-            <b>Password</b>
-          </label>
-          <input
-            type="password"
-            name="psw"
-            id="psw"
-            required
-            ref={passwordInputRef}
-          />
-          {/*
+            {/*
           <label for="psw-repeat">
             <b>Repeat Password</b>
           </label>
@@ -130,11 +164,15 @@ const Register = (props) => {
             onChange={passwordConfChangeHandler}
           />
   */}
-
-          <Button className={classes.buttonCSS} type="submit">
-            Register
-          </Button>
-          {userAdded && <Welcome onClose={hideUserAddedHandler} />}
+            <div className={classes.RegisterBTN}>
+              <CustomButton
+                label="Register"
+                className={classes.buttonCSS}
+                type="submit"
+              ></CustomButton>
+            </div>
+            {userAdded && <Welcome onClose={hideUserAddedHandler} />}
+          </div>
         </form>
       </div>
     </div>

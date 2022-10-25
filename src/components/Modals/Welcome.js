@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Welcome = (props) => {
   return (
-    <Modal>
+    <Modal onClose={props.onClose}>
       <div className={classes.total}>
         <span>User created successfully</span>
       </div>

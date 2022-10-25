@@ -11,11 +11,13 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/Login-slice";
 
 import Settings from "../Modals/Settings";
+import CustomButton from "../UI/Button";
 
 const Header = (props) => {
   const dispatch = useDispatch();
 
   const [settingsIsShown, setSettingsIsShown] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const showSettingsHandler = () => {
     setSettingsIsShown(true);
@@ -26,16 +28,20 @@ const Header = (props) => {
 
   const theme = useSelector((state) => state.theme.themeValue);
 
+  const token = useSelector((state) => state.login.tokenValue);
+
   const navigate = useNavigate();
   const TokenHandler = () => {
+    console.log("fadfa", token);
     dispatch(addTodo(""));
     navigate("/");
   };
   return (
     <Fragment>
       {theme && (
-        <div>
+        <div className={classes.mainDIV}>
           {settingsIsShown && <Settings onClose={hideSettingsHandler} />}
+
           <header className={classes.header}>
             <div className={classes.left}></div>
             <div className={classes.center}>
@@ -51,41 +57,65 @@ const Header = (props) => {
               <div className={classes.INNERright}>
                 <div className={classes.list}>
                   <Link className={classes.Link} to="/MainPage2">
-                    Home
+                    <CustomButton
+                      label="Home"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
 
                 <div className={classes.list}>
                   <Link className={classes.Link} to="/Therapists">
-                    Therapists
+                    <CustomButton
+                      label="Therapists"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
                 <div className={classes.list}>
                   <Link className={classes.Link} to="/Treatments">
-                    Treatments
+                    <CustomButton
+                      label="Treatments"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
                 <div className={classes.list}>
                   <Link className={classes.Link} to="/Location">
-                    Location
+                    <CustomButton
+                      label="Location"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
                 <div className={classes.list}>
                   <Link className={classes.Link} to="/Reservation">
-                    Reservation
+                    <CustomButton
+                      label="Reservation"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
-                <div className={classes.list}>About us</div>
                 <div className={classes.list}>
-                  <button
-                    className={classes.settings}
-                    onClick={showSettingsHandler}
-                  >
-                    Settings
-                  </button>
+                  <CustomButton
+                    label="About us"
+                    className="primary"
+                  ></CustomButton>
                 </div>
                 <div className={classes.list}>
-                  <button onClick={TokenHandler}>LOGOUT</button>
+                  <CustomButton
+                    onClick={showSettingsHandler}
+                    label="Settings"
+                    className="primary"
+                  ></CustomButton>
+                </div>
+
+                <div className={classes.list}>
+                  <CustomButton
+                    onClick={TokenHandler}
+                    label="Logout"
+                    className="primary"
+                  ></CustomButton>
                 </div>
               </div>
             </div>
@@ -110,48 +140,64 @@ const Header = (props) => {
               <div className={classes.INNERrightL}>
                 <div className={classes.listL}>
                   <Link className={classes.LinkL} to="/MainPage2">
-                    Home
+                    <CustomButton
+                      label="Home"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
 
-                <div className={classes.list}>
+                <div className={classes.listL}>
                   <Link className={classes.LinkL} to="/Therapists">
-                    Therapists
+                    <CustomButton
+                      label="Therapists"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
-                <div className={classes.list}>
+                <div className={classes.listL}>
                   <Link className={classes.LinkL} to="/Treatments">
-                    Treatments
+                    <CustomButton
+                      label="Treatments"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
-                <div className={classes.list}>
+                <div className={classes.listL}>
                   <Link className={classes.LinkL} to="/Location">
-                    Location
+                    <CustomButton
+                      label="Location"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
-                <div className={classes.list}>
+                <div className={classes.listL}>
                   <Link className={classes.LinkL} to="/Reservation">
-                    Reservation
+                    <CustomButton
+                      label="Reservation"
+                      className="primary"
+                    ></CustomButton>
                   </Link>
                 </div>
                 <div className={classes.listL}>
-                  <button
-                    className={classes.settings}
-                    onClick={showSettingsHandler}
-                  >
-                    About us
-                  </button>
+                  <CustomButton
+                    label="About us"
+                    className="primary"
+                  ></CustomButton>
                 </div>
                 <div className={classes.listL}>
-                  <button
-                    className={classes.settings}
+                  <CustomButton
                     onClick={showSettingsHandler}
-                  >
-                    Settings
-                  </button>
+                    label="Settings"
+                    className="primary"
+                  ></CustomButton>
                 </div>
                 <div className={classes.listL}>
-                  <button onClick={TokenHandler}>LOGOUT</button>
+                  <CustomButton
+                    onClick={TokenHandler}
+                    label="Logout"
+                    className="primary"
+                  ></CustomButton>
                 </div>
               </div>
             </div>

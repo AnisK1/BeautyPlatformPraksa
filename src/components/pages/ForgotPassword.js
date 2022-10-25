@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Cpm from "../Modals/ConfirmPasswordModal";
 import axios from "axios";
 import CoverIMG from "../../image/LoginCover.jpg";
+import CustomButton from "../UI/Button";
 
 const ForgotPassword = (props) => {
   const [isClicked, setIsClicked] = useState(false);
@@ -51,9 +52,13 @@ const ForgotPassword = (props) => {
         <div className={classes.question}>
           <label>Not registered yet? </label>
           <Link to="/register">
-            <Button className={classes.buttonCSS} type="submit">
+            <CustomButton
+              label="Register"
+              className={classes.buttonCSS}
+              type="submit"
+            >
               Register
-            </Button>
+            </CustomButton>
           </Link>
         </div>
 
@@ -61,20 +66,27 @@ const ForgotPassword = (props) => {
           <h1>Forgot your password?</h1>
         </div>
         <form onSubmit={SubmitHandler}>
-          <label>
-            <b>Email</b>
-          </label>
-          <input
-            type="text"
-            required
-            className={classes.name}
-            ref={emailInputRef}
-          ></input>
+          <div className={classes.FORMDIV}>
+            <div className={classes.emailLBL}>
+              <label>
+                <b>Email</b>
+              </label>
+            </div>
 
-          <div className={classes.FP}>
-            <Button className={classes.buttonCSS} type="submit">
-              Send
-            </Button>
+            <input
+              type="text"
+              required
+              className={classes.name}
+              ref={emailInputRef}
+            ></input>
+
+            <div className={classes.FP}>
+              <CustomButton
+                label="Send"
+                className={classes.buttonCSS}
+                type="submit"
+              ></CustomButton>
+            </div>
           </div>
         </form>
       </div>

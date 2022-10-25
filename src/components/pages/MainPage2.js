@@ -31,7 +31,7 @@ function Main2() {
   const token = useSelector((state) => state.login.tokenValue);
 
   const theme = useSelector((state) => state.theme.themeValue);
-  console.log("grob te", token);
+  console.log("token", token);
   console.log("length", token.length);
 
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ function Main2() {
   };
 
   return (
-    <Fragment>
+    <>
       {theme && (
         <div className={classes.frg}>
           {cartIsShown && <Cart onClose={hideCartHandler} />}
@@ -67,7 +67,7 @@ function Main2() {
                   <h2>
                     Or you want to decorate yourself for special occasion?
                   </h2>
-                  <button>CONTACT US</button>
+                  <button style={{ marginTop: "24px" }}>CONTACT US</button>
                 </div>
               </div>
               <div className={classes.desni}>
@@ -101,7 +101,7 @@ function Main2() {
                   <h2>
                     Or you want to decorate yourself for special occasion?
                   </h2>
-                  <button>CONTACT US</button>
+                  <button style={{ marginTop: "24px" }}>CONTACT US</button>
                 </div>
               </div>
               <div className={classes.desniL}>
@@ -116,7 +116,7 @@ function Main2() {
           <div className={classes.footerL}></div>
         </div>
       )}
-    </Fragment>
+    </>
   );
 }
 

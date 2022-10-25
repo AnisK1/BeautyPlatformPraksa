@@ -48,70 +48,80 @@ function Main() {
   }, []);
 
   return (
-    <Fragment>
+    <>
       {theme && (
-        <div>
+        <div className={classes.main}>
           <Header onShowCart={showCartHandler}></Header>
           <div className={classes.cover}></div>
           {cartIsShown && <Cart onClose={hideCartHandler} />}
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Maleimg}></img>
-            <div className={classes.innerdiv}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+          <div className={classes.innerMain}>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Maleimg} alt="images"></img>
+              </div>
+              <div className={classes.innerdiv}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Femaleimg}></img>
-            <div className={classes.innerdiv}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Femaleimg}></img>
+              </div>
+              <div className={classes.innerdiv}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Maleimg}></img>
-            <div className={classes.innerdiv}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Maleimg}></img>
+              </div>
+              <div className={classes.innerdiv}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Femaleimg}></img>
-            <div className={classes.innerdiv}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Femaleimg}></img>
+              </div>
+              <div className={classes.innerdiv}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -121,69 +131,79 @@ function Main() {
           <Header onShowCart={showCartHandler}></Header>
           <div className={classes.cover}></div>
           {cartIsShown && <Cart onClose={hideCartHandler} />}
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Maleimg}></img>
-            <div className={classes.innerdivL}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+          <div className={classes.innerMain}>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Maleimg}></img>
+              </div>
+              <div className={classes.innerdivL}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Femaleimg}></img>
-            <div className={classes.innerdivL}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Femaleimg}></img>
+              </div>
+              <div className={classes.innerdivL}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Maleimg}></img>
-            <div className={classes.innerdivL}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Maleimg}></img>
+              </div>
+              <div className={classes.innerdivL}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
-          </div>
-          <div className={classes.therapistsCVR}>
-            {" "}
-            <img className={classes.image} src={Femaleimg}></img>
-            <div className={classes.innerdivL}>
-              <h1>Lastname</h1>
-              <h3>Name</h3>
-              <h2>Years</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
+            <div className={classes.therapistsCVR}>
+              {" "}
+              <div className={classes.imageW}>
+                <img className={classes.image} src={Femaleimg}></img>
+              </div>
+              <div className={classes.innerdivL}>
+                <h1>Lastname</h1>
+                <h3>Name</h3>
+                <h2>Years</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       )}
-    </Fragment>
+    </>
   );
 }
 

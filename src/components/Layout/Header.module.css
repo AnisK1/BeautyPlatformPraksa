@@ -175,3 +175,35 @@ button:hover {
 .settings:hover {
   background-color: transparent;
 }
+
+/*----------------------------------------------*/
+
+@media screen and (max-width: 480px) {
+  body {
+    width: 100%;
+  }
+  .INNERright {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+  .mainDIV {
+    display: flex;
+    flex-direction: column;
+    width: 40vh;
+  }
+  .left {
+    width: 0px;
+  }
+  .header {
+    align-items: flex-start;
+    width: 50vh;
+  }
+  .right {
+    align-items: center;
+  }
+}

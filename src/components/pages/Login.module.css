@@ -13,7 +13,9 @@
 .submain {
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   position: relative;
   height: 100vh;
   width: 50%;
@@ -79,7 +81,7 @@ form {
 .title {
   position: absolute;
   padding-left: 45%;
-  padding-top: 60px;
+  padding-top: 100px;
 }
 .buttonCSS {
   width: 30%;
@@ -87,10 +89,15 @@ form {
   border-radius: 30px;
   background: transparent;
   background-color: none;
+  color: white;
+  border: white;
+  margin-top: 25px;
 }
+
 button {
   background-color: none;
   background: transparent;
+  color: white;
 }
 .FP {
   width: 100%;
@@ -101,4 +108,36 @@ button {
 .MainA {
   width: 100%;
   height: 100%;
+}
+.AA {
+  display: flex;
+  align-items: flex-end;
+  float: right;
+}
+.questionFRAME {
+  display: flex;
+  flex-direction: column;
+  float: right;
+
+  width: 30vh;
+  margin-right: 0px;
+}
+.questionFRAME button {
+  width: 20vh;
+}
+
+.FORMDIV input:focus {
+  background-color: rgba(151, 147, 147, 0.409);
+}
+.passwordLBL {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.EmailLBL {
+  margin-bottom: 10px;
+}
+.error {
+  border: 5px solid red;
+  color: white;
+  margin-top: 20px;
 }

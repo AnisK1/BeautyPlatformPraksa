@@ -1,4 +1,4 @@
-import classes from "./Login.module.css";
+import classes from "./ResetPassword.module.css";
 import profile from "../../image/pic2.jpg";
 import Button from "../UI/Button";
 import React, { useState, useRef } from "react";
@@ -7,30 +7,53 @@ import Button1 from "@mui/material/Button";
 import axios from "axios";
 import CoverIMG from "../../image/LoginCover.jpg";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
+import CustomButton from "../UI/Button";
+
 const ResetPassword = (props) => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
   const ConfirmedPasswordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(false);
+  /* 
+  const query = new URLSearchParams(this.props.location.search);
+
+  const tokenValue = query.get("token");
+  console.log("token iz stringa", tokenValue); //123 */
+
+  const paramsInfo = useParams();
+  console.log("paramsInfo", JSON.stringify(paramsInfo));
+
+  console.log("samoTOken", paramsInfo.token);
+
+  console.log("email", paramsInfo.token.slice(76));
+  console.log("token", paramsInfo.token.slice(6, 70));
+
+  /*  const token = paramsInfo.token.slice(6, 70);
+  const email = paramsInfo.token.slice(76); */
+
+  const token = paramsInfo.token.slice(6, 70);
+  const email = paramsInfo.token.slice(76);
 
   const SubmitHandler = (event) => {
     event.preventDefault();
 
-    const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
     const enteredConfirmedPassword = ConfirmedPasswordInputRef.current.value;
     //ceka se da backend ispravi zato saljem token na ovaj nacin(ovaj token nije validan)
-    const enteredToken =
-      "7e758f502b7921f6c83393d4f4637a08d38a293cd1e96ebdfeded72b08b3e885";
-
     axios
       .post(
         "http://127.0.0.1:8000/api/reset/password",
         {
-          email: enteredEmail,
+          email: email,
           password: enteredPassword,
           password_confirmation: enteredConfirmedPassword,
-          token: enteredToken,
+          token: token,
         },
         {
           headers: {
@@ -57,44 +80,34 @@ const ResetPassword = (props) => {
         </div>
 
         <form onSubmit={SubmitHandler}>
-          <label>
-            <b>Email</b>
-          </label>
-          <input
-            type="text"
-            className={classes.name}
-            required
-            ref={emailInputRef}
-          ></input>
-          <label>
-            <b>Pasword</b>
-          </label>
-          <input
-            type="password"
-            className={classes.name}
-            required
-            ref={passwordInputRef}
-          ></input>
-          <label>
-            <b>Confirm pasword</b>
-          </label>
-          <input
-            type="password"
-            className={classes.name}
-            required
-            ref={ConfirmedPasswordInputRef}
-          ></input>
+          <div className={classes.FORMDIV}>
+            <div className={classes.LBL}>
+              <label>Password</label>
+            </div>
 
-          <div className={classes.BTNCTRL}>
-            {/*
-            <Button className={classes.buttonCSS} type="submit">
-              Login
-            </Button>
-  */}
+            <input
+              type="password"
+              className={classes.name}
+              required
+              ref={passwordInputRef}
+            ></input>
+            <div className={classes.LBL}>
+              <label>Confirm pasword</label>
+            </div>
+            <input
+              type="password"
+              className={classes.name}
+              required
+              ref={ConfirmedPasswordInputRef}
+            ></input>
 
-            <Button className={classes.buttonCSS} type="submit">
-              Reset
-            </Button>
+            <div className={classes.BTNCTRL}>
+              <CustomButton
+                label="Reset"
+                className={classes.buttonCSS}
+                type="submit"
+              ></CustomButton>
+            </div>
           </div>
         </form>
       </div>

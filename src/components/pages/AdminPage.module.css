@@ -6,20 +6,24 @@
 }
 .frame {
   display: flex;
+  margin: auto;
   width: 100%;
+
   align-items: center;
-  padding-left: 15%;
+  padding-left: 12%;
   padding-bottom: 2%;
+  background-color: white;
 }
 
 .button {
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: #4d1601;
-  color: white;
+  background-color: transparent;
+  border: 2px solid wheat;
+  color: black;
   padding: 0.75rem 3rem;
-
+  width: 27vh;
   justify-content: space-around;
   margin-left: 30px;
   margin-top: 30px;
@@ -28,7 +32,7 @@
 }
 .button:hover,
 .button:active {
-  background-color: #2c0d00;
+  background-color: rgba(95, 94, 94, 0.33);
 }
 
 .icon {
@@ -45,11 +49,70 @@
   font-weight: bold;
 }
 
-.button:hover .badge,
-.button:active .badge {
-  background-color: #92320c;
-}
 .cover {
   height: 8rem;
   width: 100%;
+}
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  overflow: scroll;
+}
+.mainFrame {
+}
+.UsersList {
+  height: 50vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.AllUsers,
+.AllTreatments {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.name,
+.id,
+.email {
+  width: 33%;
+}
+.treatment {
+  width: 25%;
+}
+.CardFrame2 {
+  margin-top: 20px;
+}
+.CardFrame {
+  margin-top: 15vh;
+}
+.CardFrame3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+.TherapistsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.AllTherapists {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.therapists {
+  width: 33%;
+  display: flex;
+  flex-direction: row;
 }

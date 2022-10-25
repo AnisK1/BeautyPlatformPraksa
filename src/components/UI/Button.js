@@ -1,16 +1,16 @@
 import React from "react";
 import classes from "../UI/Button.module.css";
 
-const Button = (props) => {
+const CustomButton = (props) => {
   return (
     <button
       className={`${classes.button} ${props.className}`}
       type={props.type || "button"}
-      onClick={props.OnClick}
+      onClick={props.onClick}
     >
-      {props.children}
+      {props.label}
     </button>
   );
 };
 
-export default Button;
+export default CustomButton;

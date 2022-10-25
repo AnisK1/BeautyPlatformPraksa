@@ -21,7 +21,6 @@ import ErrorPage404 from "./components/pages/ErrorPage404";
 
 function App() {
   const token = useSelector((state) => state.login.tokenValue);
-  console.log("grob te", token);
 
   if (!token) {
     return (
@@ -30,7 +29,7 @@ function App() {
 
         <Route path="register" element={<Register />} />
 
-        <Route path="ResetPassword" element={<ResetPassword />} />
+        <Route path="ResetPassword/:token" element={<ResetPassword />} />
 
         <Route path="forgotPassword" element={<ForgotPassword />} />
 

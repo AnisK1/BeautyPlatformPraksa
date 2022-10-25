@@ -6,6 +6,7 @@ import classes from "./UsersList.module.css";
 import { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import ClipLoader from "react-spinners/ClipLoader";
+import ModalOne from "../UI/ModalOne";
 
 const baseURL = "http://127.0.0.1:8000/api/allUser";
 
@@ -46,7 +47,7 @@ const UsersList = (props) => {
   });
 
   return (
-    <Modal>
+    <ModalOne>
       {loading ? (
         <div className={classes.loader}>
           <ClipLoader
@@ -67,7 +68,7 @@ const UsersList = (props) => {
           </button>
         </>
       )}
-    </Modal>
+    </ModalOne>
   );
 };
 

@@ -43,7 +43,7 @@ function Reservation() {
   };
   console.log(dateIsShown);
   return (
-    <Fragment>
+    <>
       {theme && (
         <div>
           {cartIsShown && <Cart onClose={hideCartHandler} />}
@@ -88,7 +88,7 @@ function Reservation() {
           </main>
         </div>
       )}
-    </Fragment>
+    </>
   );
 }
 

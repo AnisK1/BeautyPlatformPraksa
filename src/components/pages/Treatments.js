@@ -28,6 +28,27 @@ const DUMMY_TREATMENTS = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     price: 0.0,
   },
+  {
+    id: "t1",
+    name: "Pedicure",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    price: 0.0,
+  },
+  {
+    id: "t2",
+    name: "Manicure",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    price: 0.0,
+  },
+  {
+    id: "t3",
+    name: " Haircut",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    price: 0.0,
+  },
 ];
 
 const baseURL = "http://127.0.0.1:8000/api/allTreatments";
@@ -76,22 +97,26 @@ function Main() {
   }, []);
 
   return (
-    <Fragment>
+    <>
       {theme && (
-        <div className={classes.frame}>
-          <Header></Header>
+        <>
+          <div className={classes.frame}>
+            <Header></Header>
+            <div className={classes.position}>
+              <ul>{treatmentsList}</ul>
+            </div>
+          </div>
           <div className={classes.cover}></div>
-          <ul>{treatmentsList}</ul>
-        </div>
+        </>
       )}
       {!theme && (
         <div className={classes.frameL}>
           <Header></Header>
-          <div className={classes.cover}></div>
           <ul>{treatmentsListL}</ul>
+          <div className={classes.cover}></div>
         </div>
       )}
-    </Fragment>
+    </>
   );
 }
 

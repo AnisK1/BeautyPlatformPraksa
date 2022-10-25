@@ -6,6 +6,7 @@
   padding: 0.25rem 1rem;
   cursor: pointer;
   border-color: 1px solid white;
+  width: 17vh;
 }
 
 .button:hover,
@@ -19,4 +20,15 @@
 }
 .forgotP {
   width: 100%;
+}
+
+.primary {
+  min-width: 150px;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 5px inset white;
+  border-radius: 0px 0px 10px 5px;
 }

@@ -62,7 +62,7 @@
   text-decoration: none;
 }
 .cover {
-  height: 8rem;
+  height: 10rem;
   width: 100%;
 }
 .frg {
@@ -92,6 +92,7 @@
   flex-direction: column;
   margin-top: 15%;
   margin-left: 10%;
+  color: white;
 }
 .txtPos button {
   color: white;
@@ -103,12 +104,19 @@
   background-color: rgb(203, 108, 130);
   border: none;
   height: 55px;
+  padding-left: 7%;
+}
+.txtPos h2 {
+  color: white;
 }
 .footer {
   height: 7rem;
   width: 100%;
   margin-bottom: 0;
   background-color: black;
+}
+body {
+  overflow: hidden;
 }
 /* -------------------------------------------------------------------------------- */
 
@@ -176,11 +184,11 @@
   text-decoration: none;
 }
 .coverL {
-  height: 8rem;
+  height: 12rem;
   width: 100%;
 }
 .footerL {
-  height: 8rem;
+  height: 10rem;
   width: 100%;
   margin-bottom: 0;
   background-color: white;
@@ -223,4 +231,31 @@ body {
   background-color: rgb(203, 108, 130);
   border: none;
   height: 55px;
+  padding-left: 7%;
+}
+
+input {
+  align-items: center;
+}
+/* ------------------------------------------------------------------------- */
+
+@media screen and (max-width: 480px) {
+  body {
+    background-color: lightgreen;
+  }
+  .frg {
+  }
+  .glavni {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .desni {
+    width: 40vh;
+    height: 20vh;
+  }
+  .h1 {
+    width: 40vh;
+    align-items: center;
+    font-size: large;
+  }
 }
