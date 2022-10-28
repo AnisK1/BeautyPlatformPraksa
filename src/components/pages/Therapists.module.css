@@ -22,14 +22,10 @@
   align-items: center;
   padding: 20px;
 }
-.image {
-  width: 200px;
-  height: 200px;
-}
+
 .main {
   overflow: scroll;
   height: 105vh;
-  border: 3px solid red;
 }
 
 .therapistsCVR {
@@ -44,7 +40,6 @@
   padding-bottom: 50px;
 }
 .imageW {
-  width: 60vh;
   height: 100%;
   margin-bottom: -2px;
 }
@@ -78,15 +73,62 @@
   height: 100%;
   background-color: black;
 }
+.okvir {
+  background-color: black;
+  margin-top: 5vh;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.AllTherapists {
+  display: flex;
+  width: 75%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+  font-size: larger;
+  border-bottom: 3px solid wheat;
+}
+.therapists {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  margin-left: 20px;
+  width: 25%;
+}
 
 /* ----------------------------------------------------------------------------- */
+.okvirL {
+  background-color: white;
+  margin-top: 5vh;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.AllTherapistsL {
+  display: flex;
+  width: 75%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background-color: white;
+  font-size: larger;
+  border-bottom: 3px solid wheat;
+}
 
 .frameL {
   width: 100%;
-
   background-color: white;
   overflow: scroll;
-  height: 105vh;
+  height: 130vh;
 }
 
 .button {

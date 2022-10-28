@@ -1,63 +1,3 @@
-.frame {
-  width: 100%;
-  height: 100%;
-}
-.frame label {
-  color: black;
-}
-.frame button {
-  background-color: transparent;
-  border: 2px solid wheat;
-  color: black;
-}
-.frame button:hover {
-  background-color: rgb(203, 108, 130);
-  border: 1px solid wheat;
-}
-.name {
-  border: 2px solid black;
-  color: black;
-  width: 40%;
-}
-.form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0;
-}
-.FP {
-  margin-top: 20px;
-}
-.spiner {
-  z-index: 20;
-}
-.frame {
-  width: 100%;
-  height: 30vh;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-.positionLBL {
-  width: 30%;
-  display: flex;
-  margin: auto;
-}
-.positionLBL label {
-  width: 30%;
-  display: flex;
-  margin: auto;
-}
-.positionINP {
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-.positionINP input {
-  width: 100%;
-  display: flex;
-  margin: auto;
-}
-
 .darkBG {
   background-color: rgba(0, 0, 0, 0.2);
   width: 100vw;
@@ -77,13 +17,28 @@
 }
 
 .modal {
-  width: 600px;
-  height: 400px;
+  width: 500px;
+  height: 350px;
   background: white;
   color: white;
   z-index: 10;
   border-radius: 16px;
   box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+.mainFrame {
+  display: flex;
+  flex-direction: column;
+  height: 30vh;
+  align-items: center;
+}
+.viberCLS {
+  width: 35%;
+  height: 8vh;
+  background-size: cover;
+  background-repeat: "no-repeat";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .modalHeader {
@@ -108,13 +63,15 @@
   font-size: 14px;
   color: #2c3e50;
   text-align: center;
+  height: 70%;
 }
 
 .modalActions {
-  position: absolute;
   bottom: 2px;
   margin-bottom: 10px;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .actionsContainer {
@@ -171,32 +128,17 @@
   cursor: pointer;
   font-weight: 500;
   padding: 11px 28px;
-  border-radius: 12px;
+  border-radius: 20px;
   font-size: 0.8rem;
   border: none;
-  color: #2c3e50;
-  background: #fcfcfc;
+  color: #fff;
+  background: rgb(203, 108, 130);
   transition: all 0.25s ease;
+  width: 10rem;
 }
 
 .cancelBtn:hover {
-  box-shadow: none;
-  transform: none;
-  background: whitesmoke;
-}
-.UsersList {
-  width: 500px;
-  height: 20px;
-  border: 2px solid red;
-}
-.result {
-  margin-top: 20px;
-
-  width: 100%;
-
-  overflow: scroll;
-  overflow-x: hidden;
-}
-.Innerresult {
-  height: 100px;
+  box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+  transform: translateY(-5px);
+  background: rgb(193, 77, 104);
 }

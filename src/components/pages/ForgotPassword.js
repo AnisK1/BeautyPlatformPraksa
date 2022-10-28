@@ -8,16 +8,19 @@ import Cpm from "../Modals/ConfirmPasswordModal";
 import axios from "axios";
 import CoverIMG from "../../image/LoginCover.jpg";
 import CustomButton from "../UI/Button";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ForgotPassword = (props) => {
   const [isClicked, setIsClicked] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
   const emailInputRef = useRef();
 
   const SubmitHandler = (event) => {
     event.preventDefault();
     const enteredEmail = emailInputRef.current.value;
-
+    setLoading(true);
     axios
       .post(
         "http://127.0.0.1:8000/api/forgot/password",
@@ -36,9 +39,14 @@ const ForgotPassword = (props) => {
           console.log("User added");
           setIsClicked(true);
           console.log(isClicked);
+          setLoading(false);
         }
       })
-      .catch((error) => {});
+      .catch((error) => {
+        setLoading(false);
+
+        setError(error.response.data.message);
+      });
   };
 
   return (
@@ -79,6 +87,19 @@ const ForgotPassword = (props) => {
               className={classes.name}
               ref={emailInputRef}
             ></input>
+            {loading && (
+              <div className={classes.loader}>
+                <ClipLoader
+                  color="#ED5282"
+                  className={classes.spiner}
+                  loading={loading}
+                  size={60}
+                  aria-label="Loading Spinner"
+                  data-testid="FadeLoader"
+                />
+              </div>
+            )}
+            {error && <div className={classes.error}> {error}</div>}
 
             <div className={classes.FP}>
               <CustomButton

@@ -33,6 +33,7 @@
 }
 .react-calendar button:enabled:hover {
   cursor: pointer;
+  color: black;
 }
 .react-calendar__navigation {
   display: flex;
@@ -58,6 +59,7 @@
 }
 .react-calendar__month-view__weekdays__weekday {
   padding: 0.5em;
+  color: black;
 }
 .react-calendar__month-view__weekNumbers .react-calendar__tile {
   display: flex;
@@ -66,6 +68,10 @@
   font-size: 0.75em;
   font-weight: bold;
 }
+.react-calendar__month-view__days__day {
+  color: black;
+}
+
 .react-calendar__month-view__days__day--weekend {
   color: #d10000;
 }
@@ -75,6 +81,7 @@
 .react-calendar__year-view .react-calendar__tile,
 .react-calendar__decade-view .react-calendar__tile,
 .react-calendar__century-view .react-calendar__tile {
+  color: black;
   padding: 2em 0.5em;
 }
 .react-calendar__tile {

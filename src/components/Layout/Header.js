@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 
 import HeaderCartButton from "./HeaderCartButton";
-import headerImage from "../../image/Logo.png";
+import headerImage from "../../image/DarkLogo.png";
 import headerImageL from "../../image/LogoL.png";
 import classes from "./Header.module.css";
 import { useNavigate } from "react-router-dom";
@@ -97,10 +97,12 @@ const Header = (props) => {
                   </Link>
                 </div>
                 <div className={classes.list}>
-                  <CustomButton
-                    label="About us"
-                    className="primary"
-                  ></CustomButton>
+                  <Link className={classes.Link} to="/AboutUs">
+                    <CustomButton
+                      label="About us"
+                      className="primary"
+                    ></CustomButton>
+                  </Link>
                 </div>
                 <div className={classes.list}>
                   <CustomButton
@@ -180,10 +182,12 @@ const Header = (props) => {
                   </Link>
                 </div>
                 <div className={classes.listL}>
-                  <CustomButton
-                    label="About us"
-                    className="primary"
-                  ></CustomButton>
+                  <Link className={classes.Link} to="/AboutUs">
+                    <CustomButton
+                      label="About us"
+                      className="primary"
+                    ></CustomButton>
+                  </Link>
                 </div>
                 <div className={classes.listL}>
                   <CustomButton

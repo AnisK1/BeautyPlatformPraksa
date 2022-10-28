@@ -2,39 +2,45 @@ import { Fragment } from "react";
 import axios from "axios";
 import Modal from "../UI/Modal";
 import { Link } from "react-router-dom";
-import classes from "./UserSearch.module.css";
+import classes from "./UpdateTreatment.module.css";
 import { useState, useEffect, useRef } from "react";
 import Card from "../UI/Card";
 import ClipLoader from "react-spinners/ClipLoader";
 import Button from "../UI/Button";
 import CustomButton from "../UI/Button";
 
-const baseURL = "http://127.0.0.1:8000/api/search/";
+const baseURL = "http://127.0.0.1:8000/api/updateTreatment";
 
-const UserSearch = (props) => {
-  const nameInputRef = useRef();
-
+const UpdateTreatment = (props) => {
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const SearchName = useRef();
+  const [result, setResult] = useState("Update treatment");
+  const price = useRef();
+  const duration = useRef();
+  const description = useRef();
+  const id = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const enteredName = nameInputRef.current.value;
-    const id = 0;
+    const enteredPrice = price.current.value;
+    const enteredDuration = duration.current.value;
+    const enteredDescription = description.current.value;
+    const enteredID = id.current.value;
 
     setLoading(true);
     axios
-      .get(baseURL + enteredName)
+      .put(baseURL, {
+        price: enteredPrice,
+        Duration: enteredDuration,
+        Description: enteredDescription,
+        id: enteredID,
+      })
       .then((res) => {
-        // check status for response and set data accordingly
-        setPost(res.data.data.user);
-        // log the data
-        console.log("search", res.data.data.user);
-        console.log("Name", post.name);
         setLoading(false);
-        console.log("responese", res);
+
+        setResult(res.data.message);
+        console.log("REZULTAT", res);
       })
       .catch((error) => {
         /* setLoading(false);
@@ -42,73 +48,65 @@ const UserSearch = (props) => {
       });
   };
 
-  let result = "no results found";
-
-  if (post.length !== 0) {
-    result = post.map((post, index) => {
-      return (
-        <li key={index} className={classes.frame}>
-          <div className={classes.AllUsers}>
-            <div className={classes.treatment}>ID:{post?.id}</div>
-
-            <div className={classes.treatment}>Name:{post?.name}</div>
-
-            <div className={classes.treatment}>Email:{post?.email}</div>
-          </div>
-        </li>
-      );
-    });
-  }
-  /* console.log("result", result); */
-
-  /*  const User = post.map((user, index) => {
-    console.log("post", post);
-    return user ? (
-      <li key={index} className={classes.frame}>
-        <div className={classes.AllTreatments}>
-          <div className={classes.treatment}>ID:{post.id}</div>
-
-          <div className={classes.treatment}>Price:{post.name}</div>
-
-          <div className={classes.treatment}>Duration:{post.email}</div>
-        </div>
-      </li>
-    ) : null;
-  }); */
-
   return (
     <>
       <div className={classes.darkBG} onClick={props.onClose} />
       <div className={classes.centered}>
         <div className={classes.modal}>
           <div className={classes.modalHeader}>
-            <h5 className={classes.heading}>Search user by name</h5>
+            <h5 className={classes.heading}>Update treatment</h5>
           </div>
 
           <div className={classes.modalContent}>
             <div className={classes.frame}>
               <form onSubmit={submitHandler} className={classes.form}>
                 <div className={classes.frame}>
-                  {/* <div className={classes.positionLBL}>
-                    <label>
-                      <b>Name</b>
-                    </label>
-                  </div> */}
                   <div className={classes.positionINP}>
                     <input
                       type="text"
                       required
                       className={classes.name}
-                      ref={nameInputRef}
-                      placeholder="Name..."
+                      ref={price}
+                      placeholder="Price..."
+                    ></input>
+                  </div>
+
+                  <div className={classes.positionINP}>
+                    <input
+                      type="text"
+                      required
+                      className={classes.name}
+                      ref={duration}
+                      placeholder="Duration..."
+                    ></input>
+                  </div>
+
+                  <div className={classes.positionINP}>
+                    <input
+                      type="text"
+                      required
+                      className={classes.name}
+                      ref={description}
+                      placeholder="Description..."
+                    ></input>
+                  </div>
+
+                  <div className={classes.positionINP}>
+                    <input
+                      type="text"
+                      required
+                      className={classes.name}
+                      ref={id}
+                      placeholder="ID..."
                     ></input>
                   </div>
 
                   <div className={classes.FP}>
                     <CustomButton
-                      label="Search"
+                      label="Update"
                       className={classes.buttonCSS}
                       type="submit"
+                      onClick={submitHandler}
                     ></CustomButton>
                   </div>
                   <div className={classes.result}>
@@ -127,13 +125,14 @@ const UserSearch = (props) => {
                   </div>
                 </div>
               </form>
-              <div></div>
-
-              <CustomButton
-                label="Close"
-                className={classes.button}
-                onClick={props.onClose}
-              ></CustomButton>
+              <div className={classes.Close}></div>
+              <div className={classes.Close}>
+                <CustomButton
+                  label="Close"
+                  className={classes.button}
+                  onClick={props.onClose}
+                ></CustomButton>
+              </div>
             </div>
           </div>
 
@@ -159,4 +158,4 @@ const UserSearch = (props) => {
   );
 };
 
-export default UserSearch;
+export default UpdateTreatment;

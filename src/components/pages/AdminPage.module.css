@@ -8,9 +8,9 @@
   display: flex;
   margin: auto;
   width: 100%;
-
+  justify-content: center;
   align-items: center;
-  padding-left: 12%;
+
   padding-bottom: 2%;
   background-color: white;
 }
@@ -48,11 +48,11 @@
   margin-left: 1rem;
   font-weight: bold;
 }
-
 .cover {
-  height: 8rem;
+  height: 10rem;
   width: 100%;
 }
+
 .mainDiv {
   display: flex;
   flex-direction: column;
@@ -67,6 +67,8 @@
   height: 50vh;
   overflow: scroll;
   overflow-x: hidden;
+  width: 90%;
+  margin-top: 20px;
 }
 .loader {
   display: flex;
@@ -105,6 +107,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 90%;
+  margin-left: 20px;
+}
+.TherapistsListContainer {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .AllTherapists {
   display: flex;
@@ -115,4 +125,48 @@
   width: 33%;
   display: flex;
   flex-direction: row;
+}
+.CardFrame3 {
+  width: 100%;
+}
+.card {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.title {
+  color: #2c3e50;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.innerFrame2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.TherapistsList {
+  width: 100%;
+  margin-top: 20px;
+}
+.TreatmentList {
+  width: 100%;
+  margin-top: 20px;
+}
+.AllReservations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.innerReservation {
+  display: flex;
+  flex-direction: row;
+}
+.reservations {
+  margin-left: 10px;
+  margin-right: 10px;
 }

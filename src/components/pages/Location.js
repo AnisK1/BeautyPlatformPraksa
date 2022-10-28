@@ -7,12 +7,17 @@ import Header from "../Layout/Header";
 import Cart from "../Cart/Cart";
 
 import GoogleMapReact from "google-map-react";
+import icon from "../../image/TransparentLocation.png";
 
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ text }) => (
+  <div>
+    <img className={classes.icon} src={icon}></img>
+  </div>
+);
 
 function Location() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -94,7 +99,7 @@ function Location() {
                 defaultCenter={mostarProps.center}
                 defaultZoom={mostarProps.zoom}
               >
-                <AnyReactComponent lat={43.34} lng={17.8} text="Beauty" />
+                <AnyReactComponent lat={43.34} lng={17.8} text="" />
               </GoogleMapReact>
             )}
             {sarajevo && (

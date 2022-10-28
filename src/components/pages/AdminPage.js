@@ -14,13 +14,22 @@ import UsersList from "../Modals/UsersList";
 import ReservationList from "../Modals/ReservationList";
 import UserSearch from "../Modals/UserSearch";
 import CustomButton from "../UI/Button";
+import UserSearchID from "../Modals/UserSearchID";
+import DeleteUser from "../Modals/DeleteUser";
+import DeleteReservation from "../Modals/DeleteReservation";
+import UpdateTherapist from "../Modals/UpdateTherapist";
+import UpdateTreatment from "../Modals/UpdateTreatment";
 
 function Main() {
   const [cartIsShown, setCartIsShown] = useState(false);
-  const [usersListIsShown, setUsersListIsShown] = useState(false);
+  const [userDeleteIsShown, setUserDeleteIsShown] = useState(false);
   const [userSearchIsShown, setUserSearchIsShown] = useState(false);
+  const [reservationDeleteIsShown, setReservationDeleteIsShown] =
+    useState(false);
+  const [updateTherapist, setUpdateTherapist] = useState(false);
+  const [updateTreatment, setUpdateTreatment] = useState(false);
 
-  const [reservationListIsShown, setReservationListIsShown] = useState(false);
+  const [IdSearchIsShown, setIdSearchIsShown] = useState(false);
 
   const showCartHandler = () => {
     setCartIsShown(true);
@@ -29,11 +38,11 @@ function Main() {
     setCartIsShown(false);
   };
 
-  const showUsersListHandler = () => {
-    setUsersListIsShown(true);
+  const showUserDeleteHandler = () => {
+    setUserDeleteIsShown(true);
   };
-  const hideUsersListHandler = () => {
-    setUsersListIsShown(false);
+  const hideUserDeleteHandler = () => {
+    setUserDeleteIsShown(false);
   };
 
   const showUserSearchListHandler = () => {
@@ -43,11 +52,29 @@ function Main() {
     setUserSearchIsShown(false);
   };
 
-  const showReservationListHandler = () => {
-    setReservationListIsShown(true);
+  const showIdSearchHandler = () => {
+    setIdSearchIsShown(true);
   };
-  const hideReservationListHandler = () => {
-    setReservationListIsShown(false);
+  const hideIdSearchHandler = () => {
+    setIdSearchIsShown(false);
+  };
+  const showDeleteReservationHandler = () => {
+    setReservationDeleteIsShown(true);
+  };
+  const hideDeleteReservationhHandler = () => {
+    setReservationDeleteIsShown(false);
+  };
+  const showUpdateTherapistHandler = () => {
+    setUpdateTherapist(true);
+  };
+  const hideUpdateTherapistHandler = () => {
+    setUpdateTherapist(false);
+  };
+  const showUpdateTreatmentHandler = () => {
+    setUpdateTreatment(true);
+  };
+  const hideUpdateTreatmentHandler = () => {
+    setUpdateTreatment(false);
   };
   /*  ------------------------------------------------ */
 
@@ -65,7 +92,7 @@ function Main() {
         // check status for response and set data accordingly
         setPost(res.data.data.users);
         // log the data
-        console.log("post", res.data.data.users);
+
         setLoading(false);
       })
       .catch((error) => {
@@ -76,7 +103,7 @@ function Main() {
 
   const usersList = post.map((user, index) => {
     return user ? (
-      <li key={index} className={classes.frame}>
+      <div key={index} className={classes.frame}>
         <div className={classes.AllUsers}>
           <div className={classes.id}>ID:{user.id}</div>
 
@@ -84,7 +111,7 @@ function Main() {
 
           <div className={classes.email}>Email:{user.email}</div>
         </div>
-      </li>
+      </div>
     ) : null;
   });
   /*  ------------------------------------------------ */
@@ -101,7 +128,8 @@ function Main() {
         // check status for response and set data accordingly
         setTreatmentPost(res2.data.data.treatments);
         // log the data
-        console.log("treatments", res2.data.data.treatments);
+        console.log("LISTA Tretmana", res2);
+
         setLoading2(false);
       })
       .catch((error) => {
@@ -141,8 +169,9 @@ function Main() {
       .then((res3) => {
         // check status for response and set data accordingly
         setReservationPost(res3.data.data.reservations);
+        console.log("LISTA REZERVACIJA", res3.data.data.reservations);
         // log the data
-        console.log("Reservation", res3);
+
         setLoading2(false);
       })
       .catch((error) => {
@@ -153,19 +182,29 @@ function Main() {
       });
   }, []);
 
-  const ReservationsList = treatmentPost.map((reservations, index) => {
+  let ReservationsList = "no results N";
+
+  ReservationsList = reservationPost.map((reservations, index) => {
+    const date = new Date(reservations.updated_at);
+    const date1 = new Date(reservations.DateTime);
+
+    console.log("date", date.toLocaleString("de-De"));
     return reservations ? (
       <li key={index} className={classes.frame}>
         <div className={classes.AllReservations}>
-          <div className={classes.reservations}>ID:{reservations.id}</div>
+          <div className={classes.reservations}>User:{reservations.UserID}</div>
+          <div className={classes.innerReservation}>
+            <div className={classes.reservations}>
+              Date and Time:{date1.toLocaleString("de-DE")}
+            </div>
 
-          <div className={classes.reservations}>Price:{reservations.price}</div>
+            <div className={classes.reservations}>
+              Terapeut:{reservations.treatmenttherapistID}
+            </div>
 
-          <div className={classes.reservations}>
-            Duration:{reservations.Duration}
-          </div>
-          <div className={classes.reservations}>
-            Description:{reservations.Description}
+            <div className={classes.reservations}>
+              Day of reservation: {date.toLocaleString("de-De")}
+            </div>
           </div>
         </div>
       </li>
@@ -189,7 +228,7 @@ function Main() {
         // check status for response and set data accordingly
         setTherapistPost(res4.data.data.therapists);
         // log the data
-        console.log("Therapists", res4.data.data.therapists);
+
         setLoading4(false);
       })
       .catch((error) => {
@@ -223,104 +262,159 @@ function Main() {
     <>
       <div className={classes.mainDiv}>
         {cartIsShown && <Cart onClose={hideCartHandler} />}
-        {usersListIsShown && <UsersList onClose={hideUsersListHandler} />}
+        {userDeleteIsShown && <DeleteUser onClose={hideUserDeleteHandler} />}
         {userSearchIsShown && (
           <UserSearch onClose={hideUserSearchListHandler} />
         )}
-        {reservationListIsShown && (
-          <ReservationList onClose={hideReservationListHandler} />
+        {IdSearchIsShown && <UserSearchID onClose={hideIdSearchHandler} />}
+        {reservationDeleteIsShown && (
+          <DeleteReservation onClose={hideDeleteReservationhHandler} />
+        )}
+        {updateTherapist && (
+          <UpdateTherapist onClose={hideUpdateTherapistHandler} />
+        )}
+        {updateTreatment && (
+          <UpdateTreatment onClose={hideUpdateTreatmentHandler} />
         )}
 
         <Header onShowCart={showCartHandler}></Header>
-        <div className={classes.cover}></div>
+        {/* <div className={classes.cover}></div> */}
 
         <section className={classes.treatments}>
           <div className={classes.mainFrame}>
             <div className={classes.CardFrame}>
               <Card>
-                <div className={classes.frame}>
-                  <CustomButton
-                    label="User list"
-                    className={classes.button}
-                    onClick={showUsersListHandler}
-                  ></CustomButton>
-                  <CustomButton
-                    label="Reservations"
-                    className={classes.button}
-                    onClick={showReservationListHandler}
-                  ></CustomButton>
-                  <CustomButton
-                    label="User search"
-                    className={classes.button}
-                    onClick={showUserSearchListHandler}
-                  ></CustomButton>
-                </div>
-
-                {loading && (
-                  <div className={classes.loader}>
-                    <ClipLoader
-                      className={classes.spiner}
-                      loading={loading}
-                      size={60}
-                      aria-label="Loading Spinner"
-                      data-testid="FadeLoader"
-                    />
+                <div className={classes.innerFrame2}>
+                  <div className={classes.title}>
+                    <h1>Users</h1>
                   </div>
-                )}
-                <div className={classes.UsersList}>{usersList}</div>
+                  <div className={classes.TreatmentList}>
+                    <div className={classes.frame}>
+                      <CustomButton
+                        label="Delete user by ID"
+                        className={classes.button}
+                        onClick={showUserDeleteHandler}
+                      ></CustomButton>
+                      <CustomButton
+                        label="User search by ID"
+                        className={classes.button}
+                        onClick={showIdSearchHandler}
+                      ></CustomButton>
+                      <CustomButton
+                        label="User search by name"
+                        className={classes.button}
+                        onClick={showUserSearchListHandler}
+                      ></CustomButton>
+                    </div>
+
+                    {loading && (
+                      <div className={classes.loader}>
+                        <ClipLoader
+                          className={classes.spiner}
+                          loading={loading}
+                          size={60}
+                          aria-label="Loading Spinner"
+                          data-testid="FadeLoader"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className={classes.UsersList}>{usersList}</div>
+                </div>
               </Card>
             </div>
             <div className={classes.CardFrame2}>
               <Card>
-                {loading2 && (
-                  <div className={classes.loader}>
-                    <ClipLoader
-                      className={classes.spiner}
-                      loading={loading}
-                      size={60}
-                      aria-label="Loading Spinner"
-                      data-testid="FadeLoader"
-                    />
+                <div className={classes.innerFrame2}>
+                  <div className={classes.title}>
+                    <h1>Treatments</h1>
                   </div>
-                )}
-                <div className={classes.UsersList}>{TreatmentsList}</div>
+                  <div className={classes.TreatmentList}>
+                    <div className={classes.frame}>
+                      <CustomButton
+                        label="Update treatment"
+                        className={classes.button}
+                        onClick={showUpdateTreatmentHandler}
+                      ></CustomButton>
+                    </div>
+                    {loading2 && (
+                      <div className={classes.loader}>
+                        <ClipLoader
+                          className={classes.spiner}
+                          loading={loading}
+                          size={60}
+                          aria-label="Loading Spinner"
+                          data-testid="FadeLoader"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className={classes.UsersList}>{TreatmentsList}</div>
+                </div>
               </Card>
             </div>
             <div className={classes.CardFrame3}>
               <Card>
-                {loading3 && (
-                  <div className={classes.loader}>
-                    <ClipLoader
-                      className={classes.spiner}
-                      loading={loading}
-                      size={60}
-                      aria-label="Loading Spinner"
-                      data-testid="FadeLoader"
-                    />
+                <div className={classes.card}>
+                  <div className={classes.title}>
+                    <h1>Reservations</h1>
                   </div>
-                )}
-                {
-                  <div className={classes.main}>
-                    {errorMsg && <h1>There are no reservations</h1>}
-                    {/*   {!errorMsg && { ReservationsList }} */}
+
+                  <div>
+                    <CustomButton
+                      label="Delete reservation by ID"
+                      className={classes.button}
+                      onClick={showDeleteReservationHandler}
+                    ></CustomButton>
                   </div>
-                }
+
+                  {loading3 && (
+                    <div className={classes.loader}>
+                      <ClipLoader
+                        className={classes.spiner}
+                        loading={loading}
+                        size={60}
+                        aria-label="Loading Spinner"
+                        data-testid="FadeLoader"
+                      />
+                    </div>
+                  )}
+                  {<div className={classes.UsersList}>{ReservationsList}</div>}
+                </div>
               </Card>
             </div>
             <div className={classes.CardFrame2}>
               <Card>
-                {loading4 && (
-                  <div className={classes.loader}>
-                    <ClipLoader
-                      className={classes.spiner}
-                      loading={loading}
-                      size={60}
-                      aria-label="Loading Spinner"
-                      data-testid="FadeLoader"
-                    />
+                <div className={classes.innerFrame2}>
+                  <div className={classes.title}>
+                    <h1>Therapists</h1>
                   </div>
-                )}
-                <div className={classes.TherapistsList}>{TherapistsList}</div>
+                  <div>
+                    <CustomButton
+                      label="Update therapist"
+                      className={classes.button}
+                      onClick={showUpdateTherapistHandler}
+                    ></CustomButton>
+                  </div>
+                  <div className={classes.TherapistsList}>
+                    {loading4 && (
+                      <div className={classes.loader}>
+                        <ClipLoader
+                          className={classes.spiner}
+                          loading={loading}
+                          size={60}
+                          aria-label="Loading Spinner"
+                          data-testid="FadeLoader"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className={classes.TherapistsListContainer}>
+                    <div className={classes.TherapistsList}>
+                      {TherapistsList}
+                    </div>
+                  </div>
+                </div>
               </Card>
             </div>
           </div>

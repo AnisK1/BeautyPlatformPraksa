@@ -10,6 +10,7 @@ import Modal from "../UI/Modal";
 import Welcome from "../Modals/Welcome";
 import CoverIMG from "../../image/LoginCover.jpg";
 import CustomButton from "../UI/Button";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Register = (props) => {
   const nameInputRef = useRef();
@@ -17,6 +18,7 @@ const Register = (props) => {
   const passwordInputRef = useRef();
   const [userAdded, setUserAdded] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -26,6 +28,7 @@ const Register = (props) => {
     const enteredPassword = passwordInputRef.current.value;
     console.log(enteredName);
 
+    setLoading(true);
     axios
       .post(
         "/register",
@@ -46,10 +49,12 @@ const Register = (props) => {
           console.log("User added");
           setUserAdded(true);
           console.log(userAdded);
+          setLoading(false);
         }
       })
       .catch((error) => {
         if (error.response) {
+          setLoading(false);
           // Request made and server responded
           console.log(error.response.data.message);
           setErrorMessage(error.response.data.message);
@@ -148,6 +153,18 @@ const Register = (props) => {
                 ref={passwordInputRef}
               />
             </div>
+            {loading && (
+              <div className={classes.loader}>
+                <ClipLoader
+                  color="#ED5282"
+                  className={classes.spiner}
+                  loading={loading}
+                  size={60}
+                  aria-label="Loading Spinner"
+                  data-testid="FadeLoader"
+                />
+              </div>
+            )}
             {errorMessage && (
               <div className={classes.error}> {errorMessage}</div>
             )}

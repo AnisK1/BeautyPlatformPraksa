@@ -2,39 +2,39 @@ import { Fragment } from "react";
 import axios from "axios";
 import Modal from "../UI/Modal";
 import { Link } from "react-router-dom";
-import classes from "./UserSearch.module.css";
+import classes from "./DeleteReservation.module.css";
 import { useState, useEffect, useRef } from "react";
 import Card from "../UI/Card";
 import ClipLoader from "react-spinners/ClipLoader";
 import Button from "../UI/Button";
 import CustomButton from "../UI/Button";
 
-const baseURL = "http://127.0.0.1:8000/api/search/";
+const baseURL = "http://127.0.0.1:8000/api/deleteReservation/";
 
-const UserSearch = (props) => {
-  const nameInputRef = useRef();
+const DeleteReservation = (props) => {
+  const IDInputRef = useRef();
 
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const SearchName = useRef();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const enteredName = nameInputRef.current.value;
-    const id = 0;
+    const enteredID = IDInputRef.current.value;
 
     setLoading(true);
     axios
-      .get(baseURL + enteredName)
+      .delete(baseURL + enteredID)
       .then((res) => {
         // check status for response and set data accordingly
-        setPost(res.data.data.user);
+        setPost(res.data.success);
         // log the data
-        console.log("search", res.data.data.user);
-        console.log("Name", post.name);
+        //console.log("search", res);
+        // console.log("search", res.data);
+        //console.log("search", res.data.success);
+
         setLoading(false);
-        console.log("responese", res);
       })
       .catch((error) => {
         /* setLoading(false);
@@ -42,39 +42,7 @@ const UserSearch = (props) => {
       });
   };
 
-  let result = "no results found";
-
-  if (post.length !== 0) {
-    result = post.map((post, index) => {
-      return (
-        <li key={index} className={classes.frame}>
-          <div className={classes.AllUsers}>
-            <div className={classes.treatment}>ID:{post?.id}</div>
-
-            <div className={classes.treatment}>Name:{post?.name}</div>
-
-            <div className={classes.treatment}>Email:{post?.email}</div>
-          </div>
-        </li>
-      );
-    });
-  }
-  /* console.log("result", result); */
-
-  /*  const User = post.map((user, index) => {
-    console.log("post", post);
-    return user ? (
-      <li key={index} className={classes.frame}>
-        <div className={classes.AllTreatments}>
-          <div className={classes.treatment}>ID:{post.id}</div>
-
-          <div className={classes.treatment}>Price:{post.name}</div>
-
-          <div className={classes.treatment}>Duration:{post.email}</div>
-        </div>
-      </li>
-    ) : null;
-  }); */
+  let result = "Reservation deleted successfully";
 
   return (
     <>
@@ -82,7 +50,7 @@ const UserSearch = (props) => {
       <div className={classes.centered}>
         <div className={classes.modal}>
           <div className={classes.modalHeader}>
-            <h5 className={classes.heading}>Search user by name</h5>
+            <h5 className={classes.heading}>Delete reservation by ID</h5>
           </div>
 
           <div className={classes.modalContent}>
@@ -99,35 +67,36 @@ const UserSearch = (props) => {
                       type="text"
                       required
                       className={classes.name}
-                      ref={nameInputRef}
-                      placeholder="Name..."
+                      ref={IDInputRef}
+                      placeholder="ID"
                     ></input>
                   </div>
 
                   <div className={classes.FP}>
                     <CustomButton
-                      label="Search"
+                      label="Delete"
                       className={classes.buttonCSS}
                       type="submit"
                     ></CustomButton>
                   </div>
                   <div className={classes.result}>
-                    {loading && (
-                      <div className={classes.loader}>
-                        <ClipLoader
-                          className={classes.spiner}
-                          loading={loading}
-                          size={60}
-                          aria-label="Loading Spinner"
-                          data-testid="FadeLoader"
-                        />
-                      </div>
-                    )}
-                    <div className={classes.Innerresult}>{result}</div>
+                    <div className={classes.Innerresult}>
+                      {loading && (
+                        <div className={classes.loader}>
+                          <ClipLoader
+                            className={classes.spiner}
+                            loading={loading}
+                            size={60}
+                            aria-label="Loading Spinner"
+                            data-testid="FadeLoader"
+                          />
+                        </div>
+                      )}
+                      {post && <h1>{result}</h1>}
+                    </div>
                   </div>
                 </div>
               </form>
-              <div></div>
 
               <CustomButton
                 label="Close"
@@ -159,4 +128,4 @@ const UserSearch = (props) => {
   );
 };
 
-export default UserSearch;
+export default DeleteReservation;

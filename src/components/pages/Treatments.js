@@ -1,83 +1,23 @@
 import { Fragment, useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import image1 from "../../image/HairCutDark.png";
+import image2 from "../../image/HairCut.png";
+import { ClipLoader } from "react-spinners";
 
 import axios from "axios";
 
 import classes from "./Treatments.module.css";
 import Header from "../Layout/Header";
-const DUMMY_TREATMENTS = [
-  {
-    id: "t1",
-    name: "Pedicure",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    price: 0.0,
-  },
-  {
-    id: "t2",
-    name: "Manicure",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    price: 0.0,
-  },
-  {
-    id: "t3",
-    name: " Haircut",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    price: 0.0,
-  },
-  {
-    id: "t1",
-    name: "Pedicure",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    price: 0.0,
-  },
-  {
-    id: "t2",
-    name: "Manicure",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    price: 0.0,
-  },
-  {
-    id: "t3",
-    name: " Haircut",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    price: 0.0,
-  },
-];
 
 const baseURL = "http://127.0.0.1:8000/api/allTreatments";
 
 function Main() {
-  const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [treatmentPost, setTreatmentPost] = useState([]);
 
   const theme = useSelector((state) => state.theme.themeValue);
-
-  const treatmentsList = DUMMY_TREATMENTS.map((treatment) => (
-    <div className={classes.main}>
-      <h1 className={classes.name}>{treatment.name}</h1>
-      <div className={classes.description}>{treatment.description}</div>
-      <div className={classes.price}>
-        <h2>{treatment.price}$</h2>
-      </div>
-    </div>
-  ));
-  const treatmentsListL = DUMMY_TREATMENTS.map((treatment) => (
-    <div className={classes.mainL}>
-      <h1 className={classes.nameL}>{treatment.name}</h1>
-      <div className={classes.descriptionL}>{treatment.description}</div>
-      <div className={classes.priceL}>
-        <h2>{treatment.price}$</h2>
-      </div>
-    </div>
-  ));
 
   useEffect(() => {
     setLoading(true);
@@ -87,6 +27,7 @@ function Main() {
         // check status for response and set data accordingly
         //setPost(res.data.data.users);
         // log the data
+        setTreatmentPost(res.data.data.treatments);
         console.log("post", res);
         setLoading(false);
       })
@@ -95,16 +36,63 @@ function Main() {
         setError(true);
       });
   }, []);
+  const TreatmentsList = treatmentPost.map((treatment, index) => {
+    return treatment ? (
+      <div className={classes.okvir}>
+        <div className={classes.AllTreatments}>
+          <div className={classes.treatment}>
+            <img className={classes.image} src={image1}></img>
+          </div>
+          <div className={classes.treatment}>ID:{treatment.id}</div>
+
+          <div className={classes.treatment}>Price:{treatment.price}</div>
+
+          <div className={classes.treatment}>Duration:{treatment.Duration}</div>
+          <div className={classes.treatment}>
+            Description:{treatment.Description}
+          </div>
+        </div>
+      </div>
+    ) : null;
+  });
+  const TreatmentsListL = treatmentPost.map((treatment, index) => {
+    return treatment ? (
+      <div className={classes.okvirL}>
+        <div className={classes.AllTreatmentsL}>
+          <div className={classes.treatment}>
+            <img className={classes.image} src={image2}></img>
+          </div>
+          <div className={classes.treatment}>ID:{treatment.id}</div>
+
+          <div className={classes.treatment}>Price:{treatment.price}</div>
+
+          <div className={classes.treatment}>Duration:{treatment.Duration}</div>
+          <div className={classes.treatment}>
+            Description:{treatment.Description}
+          </div>
+        </div>
+      </div>
+    ) : null;
+  });
 
   return (
     <>
+      {loading && (
+        <div className={classes.loader}>
+          <ClipLoader
+            className={classes.spiner}
+            loading={loading}
+            size={60}
+            aria-label="Loading Spinner"
+            data-testid="FadeLoader"
+          />
+        </div>
+      )}
       {theme && (
         <>
           <div className={classes.frame}>
             <Header></Header>
-            <div className={classes.position}>
-              <ul>{treatmentsList}</ul>
-            </div>
+            <div className={classes.position}>{TreatmentsList}</div>
           </div>
           <div className={classes.cover}></div>
         </>
@@ -112,7 +100,7 @@ function Main() {
       {!theme && (
         <div className={classes.frameL}>
           <Header></Header>
-          <ul>{treatmentsListL}</ul>
+          <div className={classes.position}>{TreatmentsListL}</div>
           <div className={classes.cover}></div>
         </div>
       )}

@@ -18,6 +18,10 @@ import Location from "./components/pages/Location";
 import Therapists from "./components/pages/Therapists";
 import Treatments from "./components/pages/Treatments";
 import ErrorPage404 from "./components/pages/ErrorPage404";
+import AboutUs from "./components/pages/AboutUs";
+import WhoWeAre from "./components/pages/WhoWeAre";
+import OurHeritage from "./components/pages/OurHeritage";
+import Staff from "./components/pages/Staff";
 
 function App() {
   const token = useSelector((state) => state.login.tokenValue);
@@ -53,7 +57,15 @@ function App() {
 
         <Route path="UsersList" element={<UsersList />} />
 
+        <Route path="AboutUs" element={<AboutUs />} />
+
         <Route path="AdminPage" element={<AdminPage />} />
+
+        <Route path="WhoWeAre" element={<WhoWeAre />} />
+
+        <Route path="OurHeritage" element={<OurHeritage />} />
+
+        <Route path="Staff" element={<Staff />} />
 
         <Route path="*" element={<ErrorPage404 />} />
       </Routes>

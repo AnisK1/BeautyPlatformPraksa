@@ -16,6 +16,7 @@
   height: 500px;
   display: flex;
   margin: auto;
+  z-index: 0;
 }
 .locationBTNS {
   width: 480px;
@@ -61,7 +62,10 @@
   margin-bottom: 0;
   background-color: black;
 }
-
+.icon {
+  width: 40px;
+  height: 40px;
+}
 /* -------------------------------------------------------------------------------------- */
 
 .button {

@@ -1,67 +1,64 @@
-.button {
-  cursor: pointer;
-  font: inherit;
-  border: 1px solid white;
+.frame {
+  width: 100%;
+  height: 100%;
+}
+.frame label {
+  color: black;
+}
+.frame button {
   background-color: transparent;
-  color: white;
-  padding: 0.75rem 3rem;
+  border: 2px solid wheat;
+  color: black;
+}
+.frame button:hover {
+  background-color: rgb(203, 108, 130);
+  border: 1px solid wheat;
+}
+.name {
+  border: 2px solid black;
+  color: black;
+  width: 40%;
+}
+.form {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-radius: 25px;
-  font-weight: bold;
+  flex-direction: column;
+  margin-top: 0;
 }
 
-.button:hover,
-.button:active {
-  background-color: white;
+.loader {
+  z-index: 20;
+  height: 20px;
+  margin-bottom: 5px;
 }
-.addButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-.cover {
-  height: 11rem;
-  width: 100%;
+
+.FP {
+  margin-top: 20px;
 }
 .frame {
   width: 100%;
-  height: 120vh;
-  background-color: black;
-}
-
-.frameL {
-  width: 100%;
-  height: 120vh;
-  background-color: white;
-}
-.okvir {
-  color: white;
-  display: flex;
-  justify-content: center;
-  background-color: black;
-  padding: 20px;
-}
-.AllTreatments {
-  display: flex;
-  flex-direction: row;
+  height: 30vh;
   align-items: center;
-  justify-content: center;
-  width: 80%;
-  border-bottom: 2px solid wheat;
-
-  font-size: larger;
+  display: flex;
+  flex-direction: column;
 }
-.treatment {
-  width: 25%;
+.positionLBL {
+  width: 30%;
+  display: flex;
+  margin: auto;
 }
-.treatmentBTN {
-  margin-right: 0px;
+.positionLBL label {
+  width: 30%;
+  display: flex;
+  margin: auto;
 }
-.result {
-  width: 85%;
+.positionINP {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+.positionINP input {
+  width: 100%;
+  display: flex;
   margin: auto;
 }
 
@@ -81,11 +78,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  margin-top: 20px;
 }
 
 .modal {
   width: 600px;
-  height: 600px;
+  height: 400px;
   background: white;
   color: white;
   z-index: 10;
@@ -163,14 +161,14 @@
   font-size: 0.8rem;
   border: none;
   color: #fff;
-  background: rgb(203, 108, 130);
+  background: #ff3e4e;
   transition: all 0.25s ease;
 }
 
 .deleteBtn:hover {
   box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
   transform: translateY(-5px);
-  background: rgb(193, 77, 104);
+  background: #ff3e4e;
 }
 
 .cancelBtn {
@@ -191,77 +189,19 @@
   transform: none;
   background: whitesmoke;
 }
-/* ------------------------------------------------------- */
-.okvirL {
-  color: black;
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  padding: 20px;
+.UsersList {
+  width: 500px;
+  height: 20px;
+  border: 2px solid red;
 }
-.AllTreatmentsL {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  border-bottom: 2px solid wheat;
-  background-color: white;
-  font-size: larger;
-}
-.payment {
-  display: flex;
-  flex-direction: row;
+.result {
+  margin-top: 20px;
+
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
-}
-.InputPay {
-  width: 40%;
-  border: 2px solid grey;
-}
-.InputPayment {
-  width: 40%;
-  border: 2px solid grey;
-}
-.InputPayment2 {
-  width: 20%;
-  border: 2px solid grey;
-}
 
-.border {
-  display: flex;
-  flex-direction: column;
+  overflow: scroll;
+  overflow-x: hidden;
 }
-/*
-
-
-
-.actions .button--alt {
-  color: #8a2b06;
-}
-*/
-
-.left {
-  width: 50%;
-}
-.right {
-  width: 50%;
-}
-.main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.selectContainer {
-  width: 55%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-
-.react-calendar__month-view__days__day--weekend {
-  color: #d10000;
+.Innerresult {
+  height: 100px;
 }

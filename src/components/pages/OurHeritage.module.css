@@ -1,0 +1,83 @@
+.frame {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.position {
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+  margin-top: 15vh;
+}
+
+.blockLeft {
+  width: 25%;
+  height: 70%;
+
+  background-size: cover;
+  background-repeat: "no-repeat";
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+.blockRight {
+  width: 25%;
+  height: 70%;
+
+  margin-left: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.Naslov {
+  color: white;
+  margin-bottom: 20px;
+}
+.borderDemo {
+  border-radius: 7px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/*_____________________*/
+.frameL {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+.positionL {
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  color: black;
+  margin-top: 15vh;
+}
+.borderDemoL {
+  border-radius: 7px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.NaslovL {
+  color: black;
+  margin-bottom: 20px;
+}

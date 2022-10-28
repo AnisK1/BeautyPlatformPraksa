@@ -2,17 +2,17 @@ import { Fragment } from "react";
 import axios from "axios";
 import Modal from "../UI/Modal";
 import { Link } from "react-router-dom";
-import classes from "./UserSearch.module.css";
+import classes from "./UserSearchID.module.css";
 import { useState, useEffect, useRef } from "react";
 import Card from "../UI/Card";
 import ClipLoader from "react-spinners/ClipLoader";
 import Button from "../UI/Button";
 import CustomButton from "../UI/Button";
 
-const baseURL = "http://127.0.0.1:8000/api/search/";
+const baseURL = "http://127.0.0.1:8000/api/allUser/";
 
-const UserSearch = (props) => {
-  const nameInputRef = useRef();
+const UserSearchID = (props) => {
+  const IDInputRef = useRef();
 
   const [post, setPost] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,60 +21,45 @@ const UserSearch = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    const enteredName = nameInputRef.current.value;
-    const id = 0;
+    const enteredID = IDInputRef.current.value;
 
     setLoading(true);
     axios
-      .get(baseURL + enteredName)
+      .get(baseURL + enteredID)
       .then((res) => {
         // check status for response and set data accordingly
         setPost(res.data.data.user);
         // log the data
         console.log("search", res.data.data.user);
-        console.log("Name", post.name);
+        // console.log("Name", post.name);
         setLoading(false);
-        console.log("responese", res);
+        console.log("post", post);
       })
       .catch((error) => {
         /* setLoading(false);
           setError(true); */
       });
   };
+  const data = Object.values(post);
+  console.log("data array", data);
 
   let result = "no results found";
 
   if (post.length !== 0) {
-    result = post.map((post, index) => {
+    result = data.map((post, index) => {
       return (
         <li key={index} className={classes.frame}>
           <div className={classes.AllUsers}>
-            <div className={classes.treatment}>ID:{post?.id}</div>
+            <div className={classes.treatment}>ID:{data[0]}</div>
 
-            <div className={classes.treatment}>Name:{post?.name}</div>
+            <div className={classes.treatment}>Name:{data[1]}</div>
 
-            <div className={classes.treatment}>Email:{post?.email}</div>
+            <div className={classes.treatment}>Email:{data[2]}</div>
           </div>
         </li>
       );
     });
   }
-  /* console.log("result", result); */
-
-  /*  const User = post.map((user, index) => {
-    console.log("post", post);
-    return user ? (
-      <li key={index} className={classes.frame}>
-        <div className={classes.AllTreatments}>
-          <div className={classes.treatment}>ID:{post.id}</div>
-
-          <div className={classes.treatment}>Price:{post.name}</div>
-
-          <div className={classes.treatment}>Duration:{post.email}</div>
-        </div>
-      </li>
-    ) : null;
-  }); */
 
   return (
     <>
@@ -82,7 +67,7 @@ const UserSearch = (props) => {
       <div className={classes.centered}>
         <div className={classes.modal}>
           <div className={classes.modalHeader}>
-            <h5 className={classes.heading}>Search user by name</h5>
+            <h5 className={classes.heading}>Search users by ID</h5>
           </div>
 
           <div className={classes.modalContent}>
@@ -99,8 +84,8 @@ const UserSearch = (props) => {
                       type="text"
                       required
                       className={classes.name}
-                      ref={nameInputRef}
-                      placeholder="Name..."
+                      ref={IDInputRef}
+                      placeholder="ID..."
                     ></input>
                   </div>
 
@@ -127,7 +112,6 @@ const UserSearch = (props) => {
                   </div>
                 </div>
               </form>
-              <div></div>
 
               <CustomButton
                 label="Close"
@@ -159,4 +143,4 @@ const UserSearch = (props) => {
   );
 };
 
-export default UserSearch;
+export default UserSearchID;

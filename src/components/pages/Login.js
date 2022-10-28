@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Button1 from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/Login-slice";
@@ -20,8 +21,9 @@ const Login = (props) => {
   const passwordInputRef = useRef();
   const [isLogin, setIsLogin] = useState(false);
   const [value, setValue] = useState(true);
-  const [error, setError] = useState();
+
   const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const token = useSelector((state) => state.login.tokenValue);
 
@@ -51,6 +53,7 @@ const Login = (props) => {
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
+    setLoading(true);
     axios
       .post(
         "/login",
@@ -70,8 +73,10 @@ const Login = (props) => {
         console.log(data.data.token);
         dispatch(addTodo(data.data.token));
         navigate("/MainPage2");
+        setLoading(false);
       })
       .catch((error) => {
+        setLoading(false);
         if (error.response) {
           // Request made and server responded
           console.log(error.response.data.message);
@@ -140,6 +145,18 @@ const Login = (props) => {
               ></input>
             </div>
 
+            {loading && (
+              <div className={classes.loader}>
+                <ClipLoader
+                  color="#ED5282"
+                  className={classes.spiner}
+                  loading={loading}
+                  size={60}
+                  aria-label="Loading Spinner"
+                  data-testid="FadeLoader"
+                />
+              </div>
+            )}
             {errorMessage && (
               <div className={classes.error}> {errorMessage}</div>
             )}
